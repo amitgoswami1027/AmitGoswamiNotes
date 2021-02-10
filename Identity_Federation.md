@@ -1,6 +1,8 @@
 # AMAZON IAM, STS, FEDERATION AND SINGLE SIGN-ON
 
 ### AWS:IAM:An introduction
+* The "identity" aspect of AWS Identity and Access Management (IAM) helps us by asking a question "Who is that user?", often referred to as authentication.
+
 * If IAM is the bouncer then IAM Roles, Users and Groups are the different lists the bouncer checks to see who is allowed in, the A-list crowd. And if your name is on said list, ie you have permission then think of that as a valid Policy — are you cool enough to enter this particular party? OK, so far this analogy is holding up, great!
 * Roles are a collection of one or more Policies (permissions) that combined together, list out what the principal can or can’t do to other resources.
 * We have Policy, Action, Resource, Effect and Principal. Principal>Action>Resource.
@@ -30,3 +32,5 @@ what can access them (Resource based). Once you understand that, policies become
 
 ### Important Links
 * https://hamzahabdulla1.medium.com/introduction-to-aws-iam-282bceaa533c
+* [Federatation using MSAD]https://aws.amazon.com/blogs/security/aws-federated-authentication-with-active-directory-federation-services-ad-fs/
+* [ SAML 2.0 FEDERATION] : https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html
