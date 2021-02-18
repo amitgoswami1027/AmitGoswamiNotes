@@ -84,12 +84,11 @@ If you think of yourself as a cultural anthropologist and collect data during in
 ## PATTERNS FOR BEHAVIOUR INTERVIEWS
 
 ### Prior Experience Questions
+
 * Sample Question -01 : Tell me about a time when you experienced failure.
 * Response: “I was leading the implementation of new shipping and inventory management systems for 35 manufacturing plants. During our pilot plant implementation, we had major hardware failures with the scanning solution installed on forklifts. The failures were so bad that we had to resort to manual processes to keep the business going. This required us to double our staffing during the pilot. I delayed further rollouts by 8 weeks to solve the hardware problems, increasing costs. The failures during the pilot created concerns with our stakeholders that we had to overcome.”
 Take a look at this answer again. Did you notice how many times “we” was used versus “I”? Now, let’s take a look at another version of the same response.
 * Alternative Response: " I learned how important it is to take responsibility for a failure as the leader of a team. By taking responsibility, acknowledging the problems, and committing to solutions, I was able to keep the support of the plant leadership. I also remembered that a few of the team members had asked me before the launch about doing more hardware testing and I had dismissed their concerns. I apologized to them and promised to do better going forward. My personal takeaway was to be a better listener and give full consideration to concerns that are brought to my attention."
-
-![image](src="https://user-images.githubusercontent.com/13011167/108286922-f6dfa700-71af-11eb-9bf7-fe341aadccea.png)
 
 * Sample Question-02: “When things go wrong, how do you deal with it? Give me an example of a situation you dealt with in a previous role.”
 * EM Response: One of my leads sent me a text one night asking me to join a Support call. My team managed the business applications for Acme. It was end-of-month and payroll processing time. Jobs were failing and there was a sense of panic on the call (Situation). I was responsible for the execution of the payroll run within a specific time window (Tasks). I announced myself on the call and asked for a situation report. This is where my military training kicked in. My team is used to me being a laid-back manager, but I find that people calm down when you ask methodical questions and give clear and specific directions. The team was not able to give a clear description of “last known good,” so I started dispatching people to get details and report back. Instead of just verbally reporting, I asked everyone to update a shared doc so that we could all see the knowns and unknowns as they came in (Actions). My team had guessed prematurely that the problem was in the most recent code release, but reviewing all recent changes showed us that there had been a change for scheduled backups that was creating db contention and jobs were timing out (Results). It didn’t take long to solve the problem after that. Being calm under pressure helps other people be calm. I can be easy-going most of the time, but I am still very direct when necessary. When there’s a problem, people like knowing someone is in charge. To avoid panic the next time, I facilitated a post-mortem to document troubleshooting steps and came up with a process to designate a leader during a live issue.
@@ -122,13 +121,69 @@ Be ready for these possible follw-up questions:
     What would have been different if the prototype had worked perfectly?
     What would you do to prevent this from happening in the future?
 
-#### Ubung macht man Meister (Practice make one Master)
-![image](src="https://user-images.githubusercontent.com/13011167/108287459-d3692c00-71b0-11eb-8709-1294dbb6ae9d.png)
-
-#### Hypotheticals
+## Ubung macht man Meister (Practice make one Master)
+![image](https://user-images.githubusercontent.com/13011167/108286922-f6dfa700-71af-11eb-9bf7-fe341aadccea.png)
+### Hypotheticals
 Hypotheticals, or “what if” questions, challenge you to demonstrate creativity and confidence; they also allow interviewers to assess your instinctive responses. These scenarios may be realistic, fantastical, or both.
 
 Being ready for hypothetical questions can help you get past personal bias that may affect your interview performance. For example, if you are someone who prefers realism, you may be thrown by questions that ask you to imagine unrealistic scenarios. However, if you know that hypotheticals ​are coming, preparing for them will ensure that you won’t be caught off guard and respond poorly.
+
+Interviewers ask hypothetical questions to learn more about the way you creatively think, process, and react.
+
+* Sample Question: Within a 5-minute time span, the following people come to you asking for help: A V.P. whom you do not regularly interact with, your manager, and a customer. All three say their need is urgent. How do you prioritize them?
+(Take a look at this question created by Salifu who is a talent leader at GitHub. He does not answer the question, but instead, he tells you what he is listening for as the interviewer)
+
+![image](https://user-images.githubusercontent.com/13011167/108287986-c39e1780-71b1-11eb-9a3f-722b817bb3f6.png)
+
+
+### Sample - Hypotheticals -01
+* Question: If I were your supervisor and asked you to do something that you disagreed with, what would you do?
+* Response: "If my supervisor asked me to do something I disagreed with I would respectfully push back. I would ask questions about the value of the project/feature/task (etc.) and how it would benefit the greater good of users. It’s important to me that I believe in what I’m working on and if I disagree with it, I think that it’s important and appropriate to push back against my management for further explanation.”
+* Pro Tip: You can take advantage of hypothetical questions to highlight specific skills that you know will be beneficial to the organization (hence why it is important to do your homework!).
+
+
+### Sample - Hypotheticals -02
+* Question: How would you design a field test for wearable devices used to track dinosaurs in Jurassic Park?
+* Response-1: What a fun question! I would do an exhaustive pre-test to maximize the testing that can be done in a safe way. I would assemble a team that includes the animal caretakers and experts, someone from park operations and a device testing expert. I would get as much input as possible from the team I curated. I would plan to test the devices on humans first, then take the trial to the zoo to test on animals that are non-threatening. With a series of graduated testing, we could validate our processes for data collection, support, provisioning, and problem management. Lower level testing could verify device operations within humidity and temperature ranges.
+* This response highlights the candidate’s ability to plan and solicit advice from experts.
+Response-2: I love this question, Jurassic Park is my favorite movie! I would gather all my friends with pets. We would plan a series of three weekly pet playdates at the city park for 2 hours each. The testing team would arrive at the park early to set up all their equipment and outfit the pets. With each weekly iteration, we would deal with problems or miscalculations that we found. Then, I would talk to my father who works at a construction company that is currently building a high-rise downtown. I would ask if we could put devices on the construction workers and some of the equipment for three straight days. The devices should be exposed to the elements as much as possible. After completing the four tests, I would gather, compare, and analyze the test results with the team.
+* This response highlights​ the candidate’s creativity and ability to succeed with limited resources. These talents would be great to highlight if you are interviewing at a small company or start-up.
+
+### Sample Hypotheticals
+![image](https://user-images.githubusercontent.com/13011167/108288704-11ffe600-71b3-11eb-89fe-d909b2f0bea2.png)
+
+* RUBIC GUIDELINES
+  * Were you able to complete your response in 2-3 minutes?
+  * Did you describe your imagined responsibilites and the specific actions you would take?
+  * Did you explain “why” you would choose those actions?
+  * Did any of your explanations mention values that are important to the organization?
+  * Did you share your analytical approach or decision-making process?
+
+
+## Values-Based Questions
+Values-based questions openly examine whether or not your values are a good match with the organization’s values.
+
+The good news is that the responses you’ve prepared for the “prior experience” questions can also work well for values-based questions. This is the time for you to refer to your list of the organization’s values from your homework.
+
+Yes, you will want to use the organization’s lingo (can be found on their website and/or social media) in your responses as it shows an understanding of the organization and an ability to meld into their culture.
+
+Please do not confuse this with being phony, it is not the same thing. Instead, you are simply placing your knowledge and experiences into a framework that is familiar to the interviewer.
+
+### Samples
+If one of the organization’s values is, “Act like an owner,” and you are sharing a time when you were responsible for something, you can describe it by saying, “I owned…”.
+
+If the organization’s value is, “Continuous Improvement,” and you are giving an example of a problem you solved, it might fit to say something like, “this was a one-time fix for the problem, but in order to continuously improve, we monitored the results daily to understand early indicators.”
+
+#### Q: Give me an example of an org culture where you felt like you could do your best work. What was it about the culture that allowed you to perform well?
+* EM Response -1 : In my current job, two of the company values are ownership and shared responsibility. I’ve been able to leverage these in the way that I manage my team. For example, we run 3-week sprints. For every sprint, we rotate the Sprint Manager role. This means that every team member has the experience of being responsible for a release from sprint planning through to the retrospective. They all gain faciliation skills which makes them more accountable to each other because they know it will soon be their turn. We also do a lot of mentorship. When we onboard a new engineer, I ask a senior engineer to be that person’s mentor for the first 6 months. The mentor is expected to be their go-to person to make sure they are comfortable asking for help. The mentor also includes the new person in meetings, as an observer, so that they can see processes in practice. Mentors introduce new employees to people across the organization and help get their internal network started. The mentorship opportunity can be a stepping stone to a Team Lead or Manager role. The company values of shared responsibility and ownership allow me to distribute leadership tasks across the team, which empowers them and leads to growth and development.
+* Product Owner Response -2 : At XYZ healthcare, the passion for the mission drove everything. Everyone was encouraged to empathize with the patient – all the time, for every part of the experience. We took the patient journey very seriously. In meetings, it was common to hear, “Would you be ok if this was your loved one?” “How might we solve this if this was your mother?” Everyone was empowered to ask those questions. The constant focus on a real person improved our design decisions. We always said “patient," never “user." We had a lot of freedom for rough prototyping, and we spent time imagining we were 8 or 80, experiencing different health problems. I learned a lot about how different people perceive and report pain or discomfort or fear. My admiration and respect for healthcare workers really grew. They often helped us experiment. Sometimes we were solving for their pain points and it was still clear that we were serving the patient. It was very motivating to be part of a shared commitment to a high standard of service, and I would bring that commitment to this role.
+* Project Manager Response -3 : When you’re a project manager, you have all of the accountability and none of the authority. You’re responsible for delivering work done by cross-functional teams and none of the resources report to you. It’s all about your ability to influence others. At both S Compnay and W Corp, projects required a sponsor or champion. This wasn’t just the person providing the budget. The project sponsor was an executive who was accountable for delivering the project. This person was on the hook for results as much as I was. The portfolio was prioritized rigorously, so we all knew which projects trumped others. Culturally, this created support for cross-functional teamwork and collaboration. This meant that someone who wasn’t your boss could have your back or be a champion for your work. The sponsor was an escalation point for negotiating tradeoffs. Sponsors were evaluated on their ability to deliver, and every leader had projects, so they were motivated to work with each other. There was a lot of communication about the status of active projects, which created transparency. It was easy to understand what work was important to the company, and you felt like you were contributing to all of it. There were lots of opportunities to build relationships with leaders across the organization and high perfomers were more visible. Sponsors listened to team members, asked for recommendations, and respected the people on the ground. I was empowered because there were lots of examples of leaders getting things done through influence rather than direct authority.
+* Software Engineer Response -4 : When I was at ABC Foundation, there was a real focus on sharing information. We worked in teams of 8-10 people, each with a Lead. Leads reported up to managers that had two or three teams. The culture was very collaborative. Everybody worked on everything, so you got to know each other’s code and areas of expertise. If you discovered a new problem or way to do something, you were expected to add it to the KB. There was less reliance on tribal knowledge than there is at other places I’ve worked. There was no pressure to act like you know everything. If you had a question, you owned the question until it was answered, and then you were responsible for documenting the answer so others would have it. It wasn’t ok to just pose a question and be stuck if nobody responded. I got better at writing code other people could follow. My documentation really improved. We debated things and tested new ideas, but it wasn’t about something being right or winning an argument. It was about finding the best way to do something, which is really satisfying to me. If I were to join your company, I would hope to foster the same behaviors.
+
+## Asking Questions
+
+
+
 
 
 
