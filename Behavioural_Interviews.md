@@ -8,7 +8,7 @@ When preparing for interviews, it is very common for people to gloss over the be
 * Are you comfortable giving formal presentations?
 * Can you respectfully give your boss bad news?
 
-#### What interviewers are really assessing
+### What interviewers are really assessing
 So, what are interviewers really assessing during behavioral interviews? Depending on the job, it may be your ability to work in teams and collaborate with others. The culture may value knowledge sharing or being a good motivator. They might prioritize self-awareness, growth mindset, ambition, humility, comfort with ambiguity, or risk tolerance.
 
 Whether you will be pioneering a new role or backfilling an existing one, the interviewer knows more about the job than you do. They also know more about the existing team and organization. Therefore, they may be listening for certain capabilities and behaviors that will be more likely to make a new hire successful.
