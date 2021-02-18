@@ -181,10 +181,26 @@ If the organization’s value is, “Continuous Improvement,” and you are givi
 * Software Engineer Response -4 : When I was at ABC Foundation, there was a real focus on sharing information. We worked in teams of 8-10 people, each with a Lead. Leads reported up to managers that had two or three teams. The culture was very collaborative. Everybody worked on everything, so you got to know each other’s code and areas of expertise. If you discovered a new problem or way to do something, you were expected to add it to the KB. There was less reliance on tribal knowledge than there is at other places I’ve worked. There was no pressure to act like you know everything. If you had a question, you owned the question until it was answered, and then you were responsible for documenting the answer so others would have it. It wasn’t ok to just pose a question and be stuck if nobody responded. I got better at writing code other people could follow. My documentation really improved. We debated things and tested new ideas, but it wasn’t about something being right or winning an argument. It was about finding the best way to do something, which is really satisfying to me. If I were to join your company, I would hope to foster the same behaviors.
 
 ## Asking Questions
+* Rule #1: Always have questions ready to ask the interviewer.
+* Rule #2: If, during the interview, you have developed a good rapport and natural curiosity about the interviewer or something that the interviewer said, ask that question instead of a prepared one.
+* Rule #3: The best method is to ask your interviewer questions that give them a chance to talk about themselves. This helps you avoid asking questions about things that you could have easily learned from their website. It also demonstrates relationship-building skills and gives you a reason to be genuine. Luckily, asking questions about another person’s experiences or opinions comes naturally in conversation – don’t overthink it, be human.
+* Rule #4: Ask open-ended questions that elicit a response beyond “yes” or “no.”
+* Rule #5: This is not the time to ask questions about compensation, hours, perks, or titles. Asking such questions could potentially plant ideas about your motivations and drivers that may work against you. Instead, ask questions that are in the same context as the behavioral interview. This is your chance to find out if the organization’s values are just marketing buzzwords or truly a part of the culture.
 
 
+### Sample Questions Asked
+![image](https://user-images.githubusercontent.com/13011167/108290083-a9663880-71b5-11eb-93b7-fd4de2eb6fbf.png)
 
+* If you are looking for a bolder conversational point, give this a try:
+  Is there anything about my background or resume that makes you question whether or not I am a good fit for this role?
+  This question displays that you’re very interested in the job and committed to understanding your prospects as a candidate. Plus, it will allow you an opportunity to respond to any potential concerns.
 
+## TEST YOURSELVES
+* Q: "Describe a mentor who has impacted you in a positive way."
+* R: My advisor in college was very supportive of me. She placed me in positions where I would succeed. Even when I didn’t know it, my advisor was always looking for ways that she could help me build my resume. Whenever my advisor sent an opportunity my way, I would take it and try to make the best out of it. Since I knew that her career had been very similar to what I wanted to go into, I fully trusted her and the opportunities that she brought to the table. With the help of my advisor’s recommendations, I was able to secure a good job right out of college. Even though I had only just graduated, I left college with a full resume that made me marketable and brought me to a great, full-time position.
+
+### Important Link
+* https://www.educative.io/courses/grokking-the-behavioral-interview/YQXMlDkqpoA
 
 
 
