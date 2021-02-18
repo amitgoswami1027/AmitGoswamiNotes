@@ -201,7 +201,8 @@ If the organization’s value is, “Continuous Improvement,” and you are givi
 
 ### Important Link
 * https://www.educative.io/courses/grokking-the-behavioral-interview/YQXMlDkqpoA
-
+* https://www.codinginterview.com/google
+* https://www.codinginterview.com/amazon
 
 
 
