@@ -199,6 +199,12 @@ If the organization’s value is, “Continuous Improvement,” and you are givi
 * Q: "Describe a mentor who has impacted you in a positive way."
 * R: My advisor in college was very supportive of me. She placed me in positions where I would succeed. Even when I didn’t know it, my advisor was always looking for ways that she could help me build my resume. Whenever my advisor sent an opportunity my way, I would take it and try to make the best out of it. Since I knew that her career had been very similar to what I wanted to go into, I fully trusted her and the opportunities that she brought to the table. With the help of my advisor’s recommendations, I was able to secure a good job right out of college. Even though I had only just graduated, I left college with a full resume that made me marketable and brought me to a great, full-time position.
 
+# DIVERSITY AND INCLUSION
+
+Prototype Bias - Depends upon the pre-concieved notion who we think right for a praticular role based on the past experience. 
+Unconsious Biases and BlindSpots.
+https://hbr.org/2019/11/toward-a-racially-just-workplace?ab=seriesnav-bigidea
+
 ### Important Link
 * https://www.educative.io/courses/grokking-the-behavioral-interview/YQXMlDkqpoA
 * https://www.codinginterview.com/google
