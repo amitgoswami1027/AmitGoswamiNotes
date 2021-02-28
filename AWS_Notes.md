@@ -1,109 +1,63 @@
-We use cookies to ensure you get the best experience on our website. If you agree to our use of cookies, please continue to use our site. For more information, see our privacy policy.
-Continue
+# AWS SOLUTION ARCHIETCT PROFESSIONAL NOTES
 
-ACG Logo Cloud
+## (Domain 1) High Availability and Business continuity
 
-    Browse
-    Forums
-    For Business
-    About Us
+https://d1.awsstatic.com/whitepapers/Storage/Backup_and_Recovery_Approaches_Using_AWS.pdf?did=wp_card&trk=wp_card (Not on the Exam blueprint guideline)
 
-Log in Sign Up
-AWS Certified Solutions Architect - Professional 2018 course artwork
-AWS Certified Solutions Architect - Professional 2018
+* RTO (Recovery Time Objective) - amount of time it takes for your business to recover from outage or disruption. TIME - time to fix the problem, recover itself and testing etc.
+* RPO (Recovery Point Objective) - how much data can your organization afford to loose during the outage. (an hour?, a day?, or not at all)
 
-    60 Lessons over 12 hours
-    8 Quizzes
+Services AWS provide to help with DR: 
+* Different regions 
+* Storage: S3 (11 - 9 durability and cross region replication), Glacier, EBS(point in time snapshot - not automatic - script it), AWS Storage gateway (Gateway-stored volumes, Gateway-cached volumes, Gateway-virtual tape library - store virtual tapes in either S3 or Glacier -min. 3 hour or longer recovery time) 
+* Compute: EC2, EC2 VM Import Connector 
+* Networking: Route53, ELB, VPC, DirectConnect 
+* Databases: DynamoDB(offers cross region replication), RDS (ability to snapshot from one region to another and also have a read replica running in other region), Redshift (snapshot your data warehouse to S3 in same region or copied to another region) (
+* Orchestration: CF, Elastic Beanstalk, OpsWorks.
 
-View all Certified Solutions Architect - Professional discussions
-7
-I passed Certified Solutions Architect - Professional
-...
-Ashis Dasmahapatra
+## DR Scenarios
 
-6 Asked 4 years ago
-
-I am to happy to say you all that I passed Certified Solutions Architect - Professional exam. After intensive 4 - 5 months study(4 hrs every day), I passed exam. I have been working in IT last 15 years. Last 5 - 6 years , I have been working as an Architect. To pass the exam, you really need Solution Architect experience.
-
-Please find my inputs to pass exam
-
-I have repeated Ryan Professional course several times. Thanks Ryan and Team. I watched webinars. Thanks Joe for Good discussion.
-
-(Domain 1) High Availability and Business continuity
-
-https://d0.awsstatic.com/whitepapers/aws-disaster-recovery.pdf (Not on the Exam blueprint guideline)
-
-RTO (Recovery Time Objective) - amount of time it takes for your business to recover from outage or disruption. TIME - time to fix the problem, recover itself and testing etc.
-
-RPO (Recovery Point Objective) - how much data can your organization afford to loose during the outage. (an hour?, a day?, or not at all)
-
-Services AWS provide to help with DR: (i) different regions (ii) Storage: S3 (11 - 9 durability and cross region replication), Glacier, EBS(point in time snapshot - not automatic - script it), AWS Storage gateway (Gateway-stored volumes, Gateway-cached volumes, Gateway-virtual tape library - store virtual tapes in either S3 or Glacier -min. 3 hour or longer recovery time) (iii) compute: EC2, EC2 VM Import Connector (IV) Networking: Route53, ELB, VPC, DirectConnect (V) Databases: DynamoDB(offers cross region replication), RDS (ability to snapshot from one region to another and also have a read replica running in other region), Redshift (snapshot your data warehouse to S3 in same region or copied to another region) (VI) Orchestration: CF, Elastic Beanstalk, OpsWorks.
-
-DR Scenarios
-
-(i) Backup and Restore: cheapest, highest RTO and RPO, S3, AWS Import Export for larger datasets, Glacier / S3 - tiered backup, S3 backup can be done either using S3 APIs or using virtual appliance like AWS Storage gateway to S3 / Glacier
+### (i) Backup and Restore: cheapest, highest RTO and RPO, S3, AWS Import Export for larger datasets, Glacier / S3 - tiered backup, S3 backup can be done either using S3 APIs or using virtual appliance like AWS Storage gateway to S3 / Glacier
 
 key steps for backup and restore
 
 select appropriate tool / method for backup, ensure appropriate retention policy for data, ensure appropriate security measures are in place for the data, encryption and access policies. Storage gateway data transmission is https by default.
 
-(ii) Pilot Light: more $ than (i), shorter RTO and RPO then (i)
+### (ii) Pilot Light: more $ than (i), shorter RTO and RPO then (i)
 
-minimal version (small or most critical piece - database server) of the environment is always running in the cloud. (light it up during DR)
+* Minimal version (small or most critical piece - database server) of the environment is always running in the cloud. (light it up during DR)
+* AMI (preconfigured service / bundles) is ready in DR and using that spin of instances.
+* networking perspective - while provisioning during DR use preallocated IP address or use preallocated ENI with preallocated mac address (for special licensing requirement) or use Route 53 DNS Failover with ELB or alias record / CNAME.
+* test it out once in a while
 
-AMI (preconfigured service / bundles) is ready in DR and using that spin of instances.
+### (iii) Warm Standby: more $$ then (ii), even shorter RTO and RPO then (ii)
 
-networking perspective - while provisioning during DR use preallocated IP address or use preallocated ENI with preallocated mac address (for special licensing requirement) or use Route 53 DNS Failover with ELB or alias record / CNAME.
+* Scaled down version of the stack is fully up and running in the cloud. (smallest size possible)
+* Will not be able to take full production workload but its fully functional, during DR Autoscaling would scale it to take production work load.HZ scaling is preferred over Vertical scaling.
+* use Route 53 automated health check failover.
 
-test it out once in a while
+### (IV) Multi site: Active - Active, most expensive solution and RTO and RPO is almost zero.
+* Runs in Active Active configuration, even split. provision perfect mirror to active site.
+* Route 53 weighted DNS, weight will be updated thru script or manually during DR.
 
-(iii) Warm Standby: more $$ then (ii), even shorter RTO and RPO then (ii)
+#### DR and Business Continuity for Databases
+* RDS(MySQL, Oracle, SQL Server, PostgreSQL, MariaDB, Aurora) MultiAZ Failover
+* In case of availability loss in primary AZ, connectivity / host failure of primary DB, software patching or rebooting the primary DB
+* RDS MultiAZ deployment MySQL, Oracle, PostgreSQL - uses synchronous physical replication to achieve MultiAZ / HA.
+* RDS MultiAZ deployment SQLServer - uses synchronous logical replication to achieve MultiAZ / HA.
+* RDS MultiAZ Failover advantages - HA, Backups and Restores taken from secondary which avoids I/O suspensions of primary.
+* RDS MultiAZ Failover is all about DR and Business continuity, its not a scaling solution. ReadReplicas for scale.
+* Read Replicas (Scaling Out)(MySQL 5.6 InnoDB, Postgres 9.3.5 or newer, MariaDB)
+* Elastically scale out beyond the capacity of single DB instance for read - heavy workload. CreateDBInstanceReadReplicaAPI - source DB will be replicated using asynchronous replication.
+* Serving read traffic while source DB is unavailable, business reporting / data warehouse reporting
+* While creating read replica, AWS will take a snapshot of the DB (if multi az is not enable brief I/O suspension of about 1 min, if enabled snapshot will be taken from secondary)
+* New DNS endpoint for RR, RR can be promoted to primary (link will be broken), RR can’t be multi az (can’t have a DR of your read replica), for mysql you can have RR of RR (latency will be increased)
 
-scaled down version of the stack is fully up and running in the cloud. (smallest size possible)
-
-will not be able to take full production workload but its fully functional, during DR Autoscaling would scale it to take production work load.HZ scaling is preferred over Vertical scaling.
-
-use Route 53 automated health check failover.
-
-(IV) Multi site: Active - Active, most expensive solution and RTO and RPO is almost zero.
-
-runs in Active Active configuration, even split. provision perfect mirror to active site.
-
-Route 53 weighted DNS, weight will be updated thru script or manually during DR.
-
-DR and Business Continuity for Databases
-
-RDS(MySQL, Oracle, SQL Server, PostgreSQL, MariaDB, Aurora) MultiAZ Failover
-
-in case of availability loss in primary AZ, connectivity / host failure of primary DB, software patching or rebooting the primary DB
-
-RDS MultiAZ deployment MySQL, Oracle, PostgreSQL - uses synchronous physical replication to achieve MultiAZ / HA.
-
-RDS MultiAZ deployment SQLServer - uses synchronous logical replication to achieve MultiAZ / HA.
-
-RDS MultiAZ Failover advantages - HA, Backups and Restores taken from secondary which avoids I/O suspensions of primary.
-
-RDS MultiAZ Failover is all about DR and Business continuity, its not a scaling solution. ReadReplicas for scale.
-
-Read Replicas (Scaling Out)(MySQL 5.6 InnoDB, Postgres 9.3.5 or newer, MariaDB)
-
-Elastically scale out beyond the capacity of single DB instance for read - heavy workload. CreateDBInstanceReadReplicaAPI - source DB will be replicated using asynchronous replication.
-
-serving read traffic while source DB is unavailable, business reporting / data warehouse reporting
-
-while creating read replica, AWS will take a snapshot of the DB (if multi az is not enable brief I/O suspension of about 1 min, if enabled snapshot will be taken from secondary)
-
-new DNS endpoint for RR, RR can be promoted to primary (link will be broken), RR can’t be multi az (can’t have a DR of your read replica), for mysql you can have RR of RR (latency will be increased)
-
-Storage Gateways
-
-virtual appliance you store on premise to replicate data from your on premise.
-
-can be deployed on premise or as an EC2 instance (to backup AWS EC2 production environment), can schedule snapshots
-
-can use storage gateway with Direct Connect, can implement bandwidth throttling (to slow down / limit) (e.g. allow 100Kbps for storage gateway bandwidth for replication),
-
-need Vmware’s ESXi or Hyper-V - hypervisors need this to run on VM, 4 or 8 vCPU, 7.5GB RAM, 75GB image / system data
+#### Storage Gateways
+* Virtual appliance you store on premise to replicate data from your on premise.
+* Can be deployed on premise or as an EC2 instance (to backup AWS EC2 production environment), can schedule snapshots
+* Can use storage gateway with Direct Connect, can implement bandwidth throttling (to slow down / limit) (e.g. allow 100Kbps for storage gateway bandwidth for replication),
+* Need Vmware’s ESXi or Hyper-V - hypervisors need this to run on VM, 4 or 8 vCPU, 7.5GB RAM, 75GB image / system data
 
 (i) Gateway-Cached Volumes: primary data in S3 and frequently accessed data locally, (http://docs.aws.amazon.com/storagegateway/latest/userguide/storage-gateway-cached-concepts.html)
 
