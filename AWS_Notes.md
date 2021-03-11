@@ -1,6 +1,6 @@
 # AWS SOLUTION ARCHIETCT PROFESSIONAL NOTES
 
-## (Domain 1) High Availability and Business continuity
+# Domain 1: High Availability and Business continuity
 
 https://d1.awsstatic.com/whitepapers/Storage/Backup_and_Recovery_Approaches_Using_AWS.pdf?did=wp_card&trk=wp_card (Not on the Exam blueprint guideline)
 
@@ -135,7 +135,8 @@ services with automated backups are
 
 EC2 doesn’t have no automated backups, you need to write scripts and schedule the incremental snapshots to be stored on S3. API call or python. schedule backup time wisely, snapshots are incremental.
 
-(Domain 2) Costing and Account Management (http://docs.aws.amazon.com/IAM/latest/UserGuide/idcredentialstemp_request.html)
+# Domain 2: Costing and Account Management 
+(http://docs.aws.amazon.com/IAM/latest/UserGuide/idcredentialstemp_request.html)
 
 Cross Account Access
 
@@ -226,6 +227,82 @@ M3, M4 / General Purpose / Application Servers
 C3, C4 / Compute Optimized / CPU Intensive Apps, DBs
 
 G2 / Graphics, General purpose GPU / Video Encoding, Machine Learning, 3D Application Streaming
+
+
+
+# Domain 4: Network Design
+
+* VPC Refresher - logical datacenters in AWS. VPC Can span multiple AZ, but can’t span multiple regions, Custom VPC has to be /16 can’t go higher then that /8 is not allowed when you create Custom VPC it creates default security group, default network ACL and default route table., it doesn’t create default Subnet
+* One Subnet == One AZ, you can have security group spanning multiple AZ, ACL’s span across AZ (assign sg and ACL to two different subnets)
+* Any CIDR block 5 reserved IPs (.0, .1, .2, .3, .255), so for CIRD block /24: 2^8 - 5 = 256 - 5 = 251 available IP address space (from any CIDR first 4 ip and last IP is reserved - work on CIRD calculation : https://www.youtube.com/watch?v=ls1mMyfnaC0&list=PLEmikcqMNQvO1iDKqccPY5A1fNGFJGIAO&index=42)
+* when you create internet gateway, by default its detached, attach it to VPC then, only 1 IGW per VPC
+* When you create a VPC Default Routetable(Main Routable) is created where the default Routes are 10.0.0.0/16 Local <— all subnets inside VPC will be able to talk to each other, Don’t touch Main route table
+* Create another routetable for route out to internet (0.0.0.0/0 IGW) <— route out to the internet, Last thing you associate this new route table to one of the subnet which will make it public. (you can enable auto assign public IP for the public subnet)
+* 1 subnet can have 1 routetable , ICMP is for ping / monitor
+
+### NAT instance and NAT gateway
+* NAT Instance - disable source / destination check., always behind security group, must be in public subnet, must have an EIP, ,must be a route out of the private subnet to NAT
+* Increase the instance size if bottleneck
+* Change the main route table - add a route (0.0.0.0/0 NAT Instance target)
+* NAT Instance is a single point of failover (put it behind a ASG),
+
+### NAT gateway - released in 2016 - amazon handled
+* Amazon maintains it for you, no need to handle yourself. (security patches applied by AWS)
+* You can just create the gateway and assign EIP (put it in public subnet) (automatically assigned)
+* Change the main route table - add a route (0.0.0.0/0 NAT gateway target)
+* No need for disable source/destination check or no need to put it behind a security group - it handles it for you.
+* Highly available / redundancy no need for ASG.
+* NAT gateways are little bit costly - always use it in production scale automatically up to 10Gbps
+
+### VPC Peering
+* Connection between two VPCs that enables you to route traffic between them using private IP addresses. VPC peering across regions are not possible but across AZ is possible. Peering with your own VPCs or across another account’s VPC as long as they are in the same region, transitive peering is not possible. AWS uses existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection (so traffic is not encrypted), and does not rely on a separate piece of physical hardware, There is no single point of failure for communication or a bandwidth bottleneck. you can only peer if the CIDR blocks doesn’t collide / overlap. (it will break the peer if its already established.)
+* VPC Peering Limitations: soft limit of 50 VPC peer per VPC, can be risen up to 125 by request. A placement group can span peered VPCs (but you will get degraded performance); however you will not get full bandwidth between instances in the peered VPCs. In ingress / outguess security group you cannot reference peer VPC’s security group - instead use CIDR block in the source. Private DNS values cannot be resolved between instances in the peered VPCs. there is no charge for peering, however data transfer across the peering connections is charged.
+* Steps to setup VPC peering
+  * Owner of the local VPC sends a request to the owner of the second VPC to peer
+  * Owner of the second VPC has to accept.
+  * Owner of the local VPC adds a route to their route table allowing their subnets to route out to the peer VPC
+  * Owner of the peer VPC adds a route to their route table allowing their subnets to route back to the local VPC
+  * Security groups in both VPCs have to both allow traffic.
+  * If you are using NACL’s make sure they are allowing the traffic through.
+* Troubleshooting (important)
+  * If you can’t create a VPC peer, make sure if they are in the same region or check if the CIDR blocks are not overlapping.
+  * After the peer is setup, make sure security groups and NACLs allow traffic and check if the route is created in BOTH VPC’s routing tables.
+  * DirectConnect (http://jayendrapatil.com/category/aws/direct-connect/)(https://aws.amazon.com/directconnect/faqs/) <— must read FAQ
+    makes it easy to establish a dedicated network connection from your on premise to AWS. you can establish private connectivity between AWS and your datacenter which can reduce your network cost while using large volumes of traffic, increase bandwidth throughput and provide more consistent network experience than internet based connections.
+  * Dedicated circuit / network connections from your network and one of the AWS Direct Connect locations using 802.1q VLANs. This dedicated connection can be partitioned into multiple VIFs (virtual interfaces). VIFs allow you to use the public VIF connection to access public resources such as objects in S3 or DynamoDB or EC2 instances by public IP address (e.g any public HTTPS service endpoints-S3,SES,SQS,SNS), and private VIF connection to private resources such as Amazon EC2 instances running in VPC using private IP space (its virtual interface but connection is same) maintaining the network separation between public and private environments.
+
+### Direct Connect Benefits: Site to site VPN is unreliable because it uses software tunnels and the connection could drop out (size of router), DC gives your increased bandwidth, increased reliability by giving consistent network experience, it reduces cost when using large volumes of traffic.
+
+* How is it different from VPN ? VPN can be configured in minutes, if you have low to modest bandwidth requirements, and can tolerate the inherent variability in internet - based connectivity. AWS Direct Connect does not involve internet, it uses dedicated, private network connection between your intranet and Amazon VPC.
+* Direct Connect Connections are available in 10Gbps, 1 Gbps or sub 1 Gbps (can be purchased through AWS Direct Connect Partners)
+  diagram: http://jayendrapatil.com/category/aws/direct-connect/
+* Public VIF = public ip address / Public end points, Private VIF = private ip address within VPC (both are separate)
+* DIRECT CONNECT -Redundancy / failover: Direct connect itself is not redundant, get redundancy by option :
+  * 1) Two connections - two routers and two direct connects or 
+  * 2) Site to site VPN in place as backup, you can use BGP to failover automatically from direct connect to a site to site VPN. Bidirectional Forwarding Detection 
+    (BFD) detects the failover. CGW(customer gateway at your datacenter) vs VPG(virtual private gateway to AWS VPN)
+  * In US you only need 1 direct connect connection to connect in all 4 US regions. once established data transfer goes over AWS lines and not public internet.
+  * layer 2 connections are not supported with direct connect.
+* Amazon CloudFront supports custom origins including origins you run outside of AWS. With AWS Direct Connect, you will pay AWS Direct Connect data transfer rates for origin transfer
+* Direct Connect doesn’t guarantee any SLA.
+* Route propagation is enabled on Virtual Private Gateway and not on CGW.
+
+### HPC (High performance computing and enhanced networking)
+* Batch processing with large and compute intensive workloads (pharmaceutical and automotive industries), demands high performance CPU, Network and Storage, Usually Jumbo frames (ethernet frame with 9000 bytes of payload - regular frame is 1500 bytes of payload) are required. Shared filesystems such as Lustre and NFS use jumbo frames. Enhanced networking results in higher bandwidth, higher packet per second (PPS) performance, lower latency, consistency, scalability and lower jitter
+* SR-IOV: is a method of device virtualization which provides higher I/O performance and lower CPU utilization, Use of jumbo frames is supported in AWS through enhanced networking. Enhanced networking is available using Single Root I/O Virtualization (SR-IOV): SR-IOV is supported on HVM(Hardware virtulization) VM and not PV(para virtualization). Type of supported instances are (C3, C4, D2, I2, M4, R3). Enhanced networking is only supported within VPC and not in EC2- Classic.
+http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html
+
+### Placement groups
+* Logical grouping of instances within a single AZ, it enables applications to participate in a low network latency or high network throughput of up to 10Gbps network and you must use instance type that supports enhanced networking (C3, C4, D2, I2, M4, R3)
+* 1 placement group = 1 AZ, it can span across different subnets but the subnets must be in same AZ, can span across different VPC within same AZ / subnet - but not recommended due to bad performance. Existing instance cannot be moved to placement group. Amazon recommends to use homogenous(identical) instance types for all your instances to be placed in the placement group. Best practice to provision your placement group for peak load and launch all your ec2 instances in the placement group at the same time (you may and may not be able to add instances later on)
+* ELB: distributes incoming traffic across multiple ec2 instances in the cloud (distribute traffic / fault tolerance)
+* ELB ports supported: 25(SMTP), 80/443(HTTP/HTTPS), 1024 - 65535. can’t assign and EIP to ELB. IPV4 and IPV6 supported although VPCs do not support IPV6 at this time. you can load balance the Zone Apex of your domain(ankitshah.com, aclouguru.com <— naked domains is zone apex) using alias record of Route 53. ELB ports in EC2 classic: 25, 80, 443, 465, 587, 1024-65535
+* By turning on CloudTrail you can get ELB API calls history (usually in S3 bucket) for security analysis and troubleshooting. 1 ELB = 1 SSL certificate unless you have wildcard certificates.
+
+### Scaling NATs: Bottleneck can occur if too much traffic is being passed through NAT.
+* Scale up: increase your instance size, use the instance types that support enhanced networking(C3, C4, D2, I2, M4, R3)
+* Scale out: you can only have 1 NAT / each public subnet, so scaling out means add additional NAT by creating new public subnet. HA can be provisioned here as well but at one time only 1 NAT per public subnet.
+
 
 (Domain 3) Deployment Management
 
@@ -319,131 +396,8 @@ You can clone stacks, ideal for moving from dev to test to production. security 
 
 Lifecycle events: Lifecycle events cause specific recipes to be run on all associated instances (e.g. Setup, configure, deploy, undeploy, shutdown etc.) each layer has multiple lifecycle events (chef recepies to run). blue / green deployment etc.
 
-(Domain 4) Network Design
 
-VPC Refresher - logical datacenters in AWS
-
-VPC Can span multiple AZ, but can’t span multiple regions, Custom VPC has to be /16 can’t go higher then that /8 is not allowed
-
-when you create Custom VPC it creates default security group, default network ACL and default route table., it doesn’t create default Subnet
-
-One Subnet == one AZ, you can have security group spanning multiple AZ, ACL’s span across AZ (assign sg and ACL to two different subnets)
-
-any CIDR block 5 reserved IPs (.0, .1, .2, .3, .255), so for CIRD block /24: 2^8 - 5 = 256 - 5 = 251 available IP address space (from any CIDR first 4 ip and last IP is reserved - work on CIRD calculation : https://www.youtube.com/watch?v=ls1mMyfnaC0&list=PLEmikcqMNQvO1iDKqccPY5A1fNGFJGIAO&index=42)
-
-when you create internet gateway, by default its detached, attach it to VPC then, only 1 IGW per VPC
-
-When you create a VPC Default Routetable(Main Routable) is created where the default Routes are 10.0.0.0/16 Local <— all subnets inside VPC will be able to talk to each other, Don’t touch Main route table
-
-Create another routetable for route out to internet (0.0.0.0/0 IGW) <— route out to the internet, Last thing you associate this new route table to one of the subnet which will make it public. (you can enable auto assign public IP for the public subnet)
-
-1 subnet can have 1 routetable , ICMP is for ping / monitor
-
-NAT instance and NAT gateway
-
-NAT Instance - disable source / destination check., always behind security group, must be in public subnet, must have an EIP, ,must be a route out of the private subnet to NAT
-
-Increase the instance size if bottleneck
-
-Change the main route table - add a route (0.0.0.0/0 NAT Instance target)
-
-NAT Instance is a single point of failover (put it behind a ASG),
-
-NAT gateway - released in 2016 - amazon handled
-
-Amazon maintains it for you, no need to handle yourself. (security patches applied by AWS)
-
-You can just create the gateway and assign EIP (put it in public subnet) (automatically assigned)
-
-Change the main route table - add a route (0.0.0.0/0 NAT gateway target)
-
-No need for disable source/destination check or no need to put it behind a security group - it handles it for you.
-
-Highly available / redundancy no need for ASG.
-
-NAT gateways are little bit costly - always use it in production scale automatically up to 10Gbps
-
-VPC Peering
-
-Connection between two VPCs that enables you to route traffic between them using private IP addresses. VPC peering across regions are not possible but across AZ is possible. Peering with your own VPCs or across another account’s VPC as long as they are in the same region, transitive peering is not possible. AWS uses existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection (so traffic is not encrypted), and does not rely on a separate piece of physical hardware, There is no single point of failure for communication or a bandwidth bottleneck. you can only peer if the CIDR blocks doesn’t collide / overlap. (it will break the peer if its already established.)
-
-VPC Peering Limitations: soft limit of 50 VPC peer per VPC, can be risen up to 125 by request. A placement group can span peered VPCs (but you will get degraded performance); however you will not get full bandwidth between instances in the peered VPCs. In ingress / outguess security group you cannot reference peer VPC’s security group - instead use CIDR block in the source. Private DNS values cannot be resolved between instances in the peered VPCs. there is no charge for peering, however data transfer across the peering connections is charged.
-
-Steps to setup VPC peering
-
-Owner of the local VPC sends a request to the owner of the second VPC to peer
-
-Owner of the second VPC has to accept.
-
-Owner of the local VPC adds a route to their route table allowing their subnets to route out to the peer VPC
-
-Owner of the peer VPC adds a route to their route table allowing their subnets to route back to the local VPC
-
-Security groups in both VPCs have to both allow traffic.
-
-If you are using NACL’s make sure they are allowing the traffic through.
-
-Troubleshooting (important)
-
-If you can’t create a VPC peer, make sure if they are in the same region or check if the CIDR blocks are not overlapping.
-
-After the peer is setup, make sure security groups and NACLs allow traffic and check if the route is created in BOTH VPC’s routing tables.
-
-DirectConnect (http://jayendrapatil.com/category/aws/direct-connect/)(https://aws.amazon.com/directconnect/faqs/) <— must read FAQ
-
-makes it easy to establish a dedicated network connection from your on premise to AWS. you can establish private connectivity between AWS and your datacenter which can reduce your network cost while using large volumes of traffic, increase bandwidth throughput and provide more consistent network experience than internet based connections.
-
-dedicated circuit / network connections from your network and one of the AWS Direct Connect locations using 802.1q VLANs. This dedicated connection can be partitioned into multiple VIFs (virtual interfaces). VIFs allow you to use the public VIF connection to access public resources such as objects in S3 or DynamoDB or EC2 instances by public IP address (e.g any public HTTPS service endpoints-S3,SES,SQS,SNS), and private VIF connection to private resources such as Amazon EC2 instances running in VPC using private IP space (its virtual interface but connection is same) maintaining the network separation between public and private environments.
-
-Direct Connect Benefits: site to site VPN is unreliable because it uses software tunnels and the connection could drop out (size of router), DC gives your increased bandwidth, increased reliability by giving consistent network experience, it reduces cost when using large volumes of traffic.
-
-How is it different from VPN ? VPN can be configured in minutes, if you have low to modest bandwidth requirements, and can tolerate the inherent variability in internet - based connectivity. AWS Direct Connect does not involve internet, it uses dedicated, private network connection between your intranet and Amazon VPC.
-
-Direct Connect Connections are available in 10Gbps, 1 Gbps or sub 1 Gbps (can be purchased through AWS Direct Connect Partners)
-
-diagram: http://jayendrapatil.com/category/aws/direct-connect/
-
-Public VIF = public ip address / Public end points, Private VIF = private ip address within VPC (both are separate)
-
-redundancy / failover: Direct connect itself is not redundant, get redundancy by option 1) two connections - two routers and two direct connects or 2) site to site VPN in place as backup, you can use BGP to failover automatically from direct connect to a site to site VPN. Bidirectional Forwarding Detection (BFD) detects the failover. CGW(customer gateway at your datacenter) vs VPG(virtual private gateway to AWS VPN)
-
-In US you only need 1 direct connect connection to connect in all 4 US regions. once established data transfer goes over AWS lines and not public internet.
-
-layer 2 connections are not supported with direct connect.
-
-Amazon CloudFront supports custom origins including origins you run outside of AWS. With AWS Direct Connect, you will pay AWS Direct Connect data transfer rates for origin transfer
-
-Direct Connect doesn’t guarantee any SLA.
-
-Route propagation is enabled on Virtual Private Gateway and not on CGW.
-
-HPC (High performance computing and enhanced networking)
-
-Batch processing with large and compute intensive workloads (pharmaceutical and automotive industries), demands high performance CPU, Network and Storage, Usually Jumbo frames (ethernet frame with 9000 bytes of payload - regular frame is 1500 bytes of payload) are required. Shared filesystems such as Lustre and NFS use jumbo frames. Enhanced networking results in higher bandwidth, higher packet per second (PPS) performance, lower latency, consistency, scalability and lower jitter
-
-SR-IOV: is a method of device virtualization which provides higher I/O performance and lower CPU utilization, Use of jumbo frames is supported in AWS through enhanced networking. Enhanced networking is available using Single Root I/O Virtualization (SR-IOV): SR-IOV is supported on HVM(Hardware virtulization) VM and not PV(para virtualization). Type of supported instances are (C3, C4, D2, I2, M4, R3). Enhanced networking is only supported within VPC and not in EC2- Classic.
-
-http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html
-
-Placement groups
-
-Logical grouping of instances within a single AZ, it enables applications to participate in a low network latency or high network throughput of up to 10Gbps network and you must use instance type that supports enhanced networking (C3, C4, D2, I2, M4, R3)
-
-1 placement group = 1 AZ, it can span across different subnets but the subnets must be in same AZ, can span across different VPC within same AZ / subnet - but not recommended due to bad performance. Existing instance cannot be moved to placement group. Amazon recommends to use homogenous(identical) instance types for all your instances to be placed in the placement group. Best practice to provision your placement group for peak load and launch all your ec2 instances in the placement group at the same time (you may and may not be able to add instances later on)
-
-ELB: distributes incoming traffic across multiple ec2 instances in the cloud (distribute traffic / fault tolerance)
-
-ELB ports supported: 25(SMTP), 80/443(HTTP/HTTPS), 1024 - 65535. can’t assign and EIP to ELB. IPV4 and IPV6 supported although VPCs do not support IPV6 at this time. you can load balance the Zone Apex of your domain(ankitshah.com, aclouguru.com <— naked domains is zone apex) using alias record of Route 53. ELB ports in EC2 classic: 25, 80, 443, 465, 587, 1024-65535
-
-By turning on CloudTrail you can get ELB API calls history (usually in S3 bucket) for security analysis and troubleshooting. 1 ELB = 1 SSL certificate unless you have wildcard certificates.
-
-Scaling NATs: Bottleneck can occur if too much traffic is being passed through NAT.
-
-Scale up: increase your instance size, use the instance types that support enhanced networking(C3, C4, D2, I2, M4, R3)
-
-Scale out: you can only have 1 NAT / each public subnet, so scaling out means add additional NAT by creating new public subnet. HA can be provisioned here as well but at one time only 1 NAT per public subnet.
-
-*(Domain 5) Data Storage(15%) *
+## (5) Data Storage(15%) *
 
 (Must Read whitepaper: https://d0.awsstatic.com/whitepapers/AWS%20Storage%20Services%20Whitepaper-v9.pdf )
 
@@ -749,14 +703,6 @@ Bandwidth: hi bandwidth = lo latency
 
 Raid 0(no redundancy / fault tolerance, high speed - low cost) - high I/O performance, Raid 1 - mirror two volumes together (disaster recovery, redundant , no performance improvement, writes latency increase) , Raid 5(R/W operation will continue, more popular, combination of performance, fault tolerance)
 
-CloudFront FAQ
-
-Surprise in the exam
-
-I got at-least 4 to 5 questions on Docker (which i didn't know - now I will read), a few questions on modeling data around dynamoDB (which i happened to know).
-exam-tips
-...
-Warwickbackwards
 
 
 
@@ -766,74 +712,3 @@ Warwickbackwards
 	
 
 	
-
-
-0 2 years ago
-What a fantastic resource. Thank you for taking the time to share!
-Login To Add A Comment
-Waiting for someone to answer this question?
-Share this question online to increase its audience.
-Answer this Question
-
-You must be logged in to answer a question
-Related Questions
-My Path to Solutions Architect Associate
-Mattias Andersson - 18 days ago
-65 answers 253 votes
-New here? Read this through! Frequently Asked Questions (FAQs) On These Forums
-Mattias Andersson - 2 months ago
-21 answers 135 votes
-Important to Remember, Security Groups default Limits
-Jose Luis Quintero - 3 months ago
-16 answers 100 votes
-My Path to 5/5
-Mattias Andersson - 9 days ago
-14 answers 67 votes
-Cleared the AWS CSA with 87% !! Never expected this. Thanks to Ryan and acloud.guru team
-VIJAY ABC - 3 months ago
-31 answers 62 votes
-ACG Logo Cloud
-A Cloud Guru Ltd
-
-    London, United Kingdom
-    Washington DC, USA
-    Melbourne, Australia
-    Austin, TX, USA
-
-Training
-
-    AWS Courses Online
-    Cloud Training
-    AWS Certifications
-    AWS Certified Solutions Architect
-    Membership
-
-Resources
-
-    ACG Blog
-    ACG on Medium
-    Support
-    AWS This Week
-    The Cloudcast
-
-About Us
-
-    Our Story
-    Our Gurus
-    Careers
-    Newsroom
-    Serverlessconf
-
-© 2018 A Cloud Guru Ltd. Code of Conduct Privacy Policy Terms Of Use
-ACG Logo Cloud
-Navigation
-
-    Browse
-    Membership
-    Discussions
-    For Business
-    Our Story
-    Our Gurus
-    Serverlessconf
-    Blog
-
