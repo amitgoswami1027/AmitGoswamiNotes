@@ -38,6 +38,15 @@ Single Responsibility Principle simply means giving one, just one responsibility
 Separation of concerns kind of means the same thing, be concerned about your work only & stop worrying about the rest of the stuff. These principles act at all the levels of the service, be it at the tier level or the code level.
 
 ### Difference Between Layers & Tiers - on’t confuse tiers with the layers of the application. Some prefer to use them interchangeably. But in the industry layers of an application typically means the user interface layer, business layer, service layer, or the data access layer. The layers mentioned in the illustration are at the code level. The difference between layers and tiers is that the layers represent the organization of the code and breaking it into components. Whereas, tiers involve physical separation of components. All these layers together can be used in any tiered application. Be it single, two, three or N-tier.
+
+## WEB ARCHITECTURE
+Web architecture involves multiple components like database, message queue, cache, user interface & all running in conjunction with each other to form an online service.
+![image](https://user-images.githubusercontent.com/13011167/115167818-73bace80-a0d6-11eb-9bc2-bd738a4bcc54.png)
+
+Client-Server architecture is the fundamental building block of the web. The architecture works on a request-response model. The client sends the request to the server for information & the server responds with it. The client holds our user interface. The user interface is the presentation part of the application. It’s written in Html, JavaScript, CSS and is responsible for the look & feel of the application.
+
+
+
 ## System Design Readings
 
 * [MultiTenant Design] https://success.outsystems.com/Support/Enterprise_Customers/Maintenance_and_Operations/Designing_the_Architecture_of_Your_OutSystems_Applications/Designing_Scalable_Multi-Tenant_Applications
