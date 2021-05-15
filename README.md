@@ -45,6 +45,143 @@ Web architecture involves multiple components like database, message queue, cach
 
 Client-Server architecture is the fundamental building block of the web. The architecture works on a request-response model. The client sends the request to the server for information & the server responds with it. The client holds our user interface. The user interface is the presentation part of the application. It’s written in Html, JavaScript, CSS and is responsible for the look & feel of the application.
 
+## Client : There are primarily two types of clients
+* Thin Client : Thin Client is the client which holds just the user interface of the application. It has no business logic of any sort. For every action, the client sends a request to the backend server. Just like in a three-tier application.
+
+![image](https://user-images.githubusercontent.com/13011167/118360858-a7d6c180-b5a6-11eb-89d7-b331082dadb4.png)
+
+* Thick Client: On the contrary, the thick client holds all or some part of the business logic. These are the two-tier applications. The typical examples of Fat clients are utility apps, online games etc.
+
+![image](https://user-images.githubusercontent.com/13011167/118360982-e7051280-b5a6-11eb-839c-4005725180e1.png)
+
+## Server : The primary task of a web server is to receive the requests from the client & provide the response after executing the business logic based on the request parameters received from the client. Every service, running online, needs a server to run. Servers running web applications are commonly known as the application servers. 
+All the components of a web application need a server to run. Be it a database, a message queue, a cache or any other component. In modern application development, even the user interface is hosted separately on a dedicated server.
+
+## Server Side Rendering : Often the developers use a server to render the user interface on the backend & then send the rendered data to the client. The technique is known as server-side rendering. I will discuss the pros & cons of client-side vs server-side rendering further down the course.
+
+
+## Communication Between the Client & the Server 
+The client & the server have a request-response model. The client sends the request & the server responds with the data.
+ * HTTP Protocol : The entire communication happens over the HTTP protocol. It is the protocol for data exchange over the World Wide Web. HTTP protocol is a request-response protocol that defines how information is transmitted across the web. It’s a stateless protocol, every process over HTTP is executed independently & has no knowledge of previous processes.
+* REST API & API Endpoints : The backend application code has a REST-API implemented which acts as an interface to the outside world requests. Every request be it from the client written by the business or the third-party developers which consume our data have to hit the REST-endpoints to fetch the data.
+
+### WHAT IS REST? REST stands for Representational State Transfer. It’s a software architectural style for implementing web services. Web services implemented using the REST architectural style are known as the RESTful Web services.
+* With the implementation of a REST API the client gets the backend endpoints to communicate with. This entirely decouples the backend & the client code.
+* REST Endpoint: An API/REST/Backend endpoint means the url of a service. For example, https://myservice.com/users/{username} is a backend endpoint for fetching the user details of a particular user from the service.The REST-based service will expose this url to all its clients to fetch the user details using the above stated url.
+* Decoupling Clients & the Backend Service : With the availability of the endpoints, the backend service does not have to worry about the client implementation. Developers can have different implementations with separate codebases, for different clients, be it a mobile browser, a desktop browser, a tablet or an API testing tool. Introducing new types of clients or modifying the client code has no effect on the functionality of the backend service.
+
+### Application Development Before the REST API 
+* Before the REST-based API interfaces got mainstream in the industry. We often tightly coupled the backend code with the client. JSP (Java Server Pages) is one example of it.
+* We would always put business logic in the JSP tags. Which made code refactoring & adding new features really difficult as the logic got spread across different layers. Also, in the same codebase, we had to write separate code/classes for handling requests from different types of clients. A different servlet for a mobile client and a different one for a web-based client
+* After the REST APIs became widely used, there was no need to worry about the type of the client. Just provide the endpoints & the response would contain data generally in the JSON or any other standard data transport format. And the client would handle the data in whatever way they would want.
+* This cut down a lot of unnecessary work for us. Also, adding new clients became a lot easier. We could introduce multiple types of new clients without considering the backend implementation.
+* In today’s industry landscape, there is hardly any online service without a REST API. Want to access public data of any social network? Use their REST API.
+
+#### The REST-API acts as a gateway, as a single entry point into the system. It encapsulates the business logic. Handles all the client requests, taking care of the authorization, authentication, sanitizing the input data & other necessary tasks before providing access to the application resources.
+
+![image](https://user-images.githubusercontent.com/13011167/118361617-e0c46580-b5a9-11eb-83e2-4a7225345da6.png)
+
+## HTTP PUSH & PULL
+### HTTP PULL: As I stated earlier, for every response, there has to be a request first. The client sends the request & the server responds with the data. This is the default mode of HTTP communication, called the HTTP PULL mechanism.
+* The client pulls the data from the server whenever it requires. And it keeps doing it over and over to fetch the updated data.An important thing to note here is that every request to the server and the response to it consumes bandwidth. Every hit on the server costs the business money & adds more load on the server.
+* What if there is no updated data available on the server, every time the client sends a request?
+* The client doesn’t know that, so naturally, it would keep sending the requests to the server over and over. This is not ideal & a waste of resources. Excessive pulls by the clients have the potential to bring down the server.
+
+### HTTP PUSH: In this mechanism, the client sends the request for particular information to the server, just for the first time, & after that the server keeps pushing the new updates to the client whenever they are available.
+* The client doesn’t have to worry about sending requests to the server, for data, every now & then. This saves a lot of network bandwidth & cuts down the load on the server by notches.
+* This is also known as a Callback. Client phones the server for information. The server responds, Hey!! I don’t have the information right now but I’ll call you back whenever it is available.
+
+### HTTP PULL - Polling with Ajax ( Asynchronous Javascript & XML) : There are two ways of pulling/fetching data from the server :
+* The first is sending an HTTP GET request to the server manually by triggering an event, like by clicking a button or any other element on the web page.
+* The other is fetching data dynamically at regular intervals by using AJAX without any human intervention.
+
+* AJAX – Asynchronous JavaScript & XML : AJAX stands for asynchronous JavaScript & XML. The name says it all, it is used for adding asynchronous behaviour to the web page
+
+![image](https://user-images.githubusercontent.com/13011167/118362060-81675500-b5ab-11eb-9382-4afa4d01748d.png)
+
+#### Steps:
+* As we can see in the illustration above, instead of requesting the data manually every time with the click of a button. AJAX enables us to fetch the updated data from the server by automatically sending the requests over and over at stipulated intervals.
+* Upon receiving the updates, a particular section of the web page is updated dynamically by the callback method. We see this behaviour all the time on news & sports websites, where the updated event information is dynamically displayed on the page without the need to reload it.
+* AJAX uses an XMLHttpRequest object for sending the requests to the server which is built-in the browser and uses JavaScript to update the HTML DOM.
+* AJAX is commonly used with the Jquery framework to implement the asynchronous behaviour on the UI.
+* This dynamic technique of requesting information from the server after regular intervals is known as Polling.
+
+### HTTP PUSH : 
+* TTL : In the regular client-server communication, which is HTTP PULL, there is a Time to Live (TTL) for every request. It could be 30 secs to 60 secs, varies from browser to browser.If the client doesn’t receive a response from the server within the TTL, the browser kills the connection & the client has to re-send the request hoping it would receive the data from the server before the TTL ends this time.
+* Open connections consume resources & there is a limit to the number of open connections a server can handle at one point in time. If the connections don’t close & new ones are being introduced, over time, the server will run out of memory. Hence, the TTL is used in client-server communication.
+* But what if we are certain that the response will take more time than the TTL set by the browser? ---> PERSISTENT CONNECTIONS ARE REQUIRED????
+
+#### Persistent Connection : A persistent connection is a network connection between the client & the server that remains open for further requests & the responses, as opposed to being closed after a single communication. It facilitates HTTP Push-based communication between the client and the server.
+
+![image](https://user-images.githubusercontent.com/13011167/118362307-aa3c1a00-b5ac-11eb-8807-77850b19faf3.png)
+
+#### Heartbeat Interceptors: Now you might be wondering how is a persistent connection possible if the browser kills the open connections to the server every X seconds? The connection between the client and the server stays open with the help of Heartbeat Interceptors. These are just blank request responses between the client and the server to prevent the browser from killing the connection.
+* Isn’t this resource-intensive?
+* Yes, it is. Persistent connections consume a lot of resources in comparison to the HTTP Pull behaviour. But there are use cases where establishing a persistent connection is vital to the feature of an application.
+* For instance, a browser-based multiplayer game has a pretty large amount of request-response activity within a certain time in comparison to a regular web application.
+* It would be apt to establish a persistent connection between the client and the server from a user experience standpoint.
+* Long opened connections can be implemented by multiple techniques such as Ajax Long Polling, Web Sockets, Server-Sent Events etc.
+
+## HTTP Push-Based Technologies
+### Web Sockets : A Web Socket connection is ideally preferred when we need a persistent bi-directional low latency data flow from the client to server & back.
+
+Typical use-cases of these are messaging, chat applications, real-time social streams & browser-based massive multiplayer games which have quite a number of read writes in comparison to a regular web app.
+
+With Web Sockets, we can keep the client-server connection open as long as we want.
+
+Have bi-directional data? Go ahead with Web Sockets. One more thing, Web Sockets tech doesn’t work over HTTP. It runs over TCP. The server & the client should both support web sockets or else it won’t work.
+
+### AJAX – Long Polling : Long Polling lies somewhere between Ajax & Web Sockets. In this technique instead of immediately returning the response, the server holds the response until it finds an update to be sent to the client.
+
+The connection in long polling stays open a bit longer in comparison to polling. The server doesn’t return an empty response. If the connection breaks, the client has to re-establish the connection to the server.
+
+The upside of using this technique is that there are quite a smaller number of requests sent from the client to the server, in comparison to the regular polling mechanism. This reduces a lot of network bandwidth consumption.
+
+Long polling can be used in simple asynchronous data fetch use cases when you do not want to poll the server every now & then
+
+### HTML5 Event Source API & Server Sent Events: The Server-Sent Events implementation takes a bit of a different approach. Instead of the client polling for data, the server automatically pushes the data to the client whenever the updates are available. The incoming messages from the server are treated as Events.
+
+Via this approach, the servers can initiate data transmission towards the client once the client has established the connection with an initial request.
+
+This helps in getting rid of a huge number of blank request-response cycles cutting down the bandwidth consumption by notches.
+
+To implement server-sent events, the backend language should support the technology & on the UI HTML5 Event source API is used to receive the data in-coming from the backend.
+
+An important thing to note here is that once the client establishes a connection with the server, the data flow is in one direction only, that is from the server to the client.
+
+SSE is ideal for scenarios such as a real-time feed like that of Twitter, displaying stock quotes on the UI, real-time notifications etc
+
+### Streaming Over HTTP : Streaming Over HTTP is ideal for cases where we need to stream large data over HTTP by breaking it into smaller chunks. This is possible with HTML5 & a JavaScript Stream API.
+
+The technique is primarily used for streaming multimedia content, like large images, videos etc, over HTTP.
+
+Due to this, we can watch a partially downloaded video as it continues to download, by playing the downloaded chunks on the client.
+
+To stream data, both the client & the server agree to conform to some streaming settings. This helps them figure when the stream begins & ends over an HTTP request-response model
+
+## Client-Side Rendering : When a user requests a web page from the server & the browser receives the response. It has to render the response on the window in the form of an HTML page. For this, the browser has several components, such as the:
+* Browser engine
+* Rendering engine
+* JavaScript interpreter
+* Networking & the UI backend
+* Data storage etc.
+The rendering engine constructs the DOM tree, renders & paints the construction. And naturally, all this activity needs a bit of time.
+
+## Server-Side Rendering : To avoid all this rendering time on the client, developers often render the UI on the server, generate HTML there & directly send the HTML page to the UI. This technique is known as the Server-side rendering. It ensures faster rendering of the UI, averting the UI loading time in the browser window since the page is already created & the browser doesn’t have to do much assembling & rendering work.
+
+The server-side rendering approach is perfect for delivering static content, such as WordPress blogs. It’s also good for SEO as the crawlers can easily read the generated content.
+
+However, the modern websites are highly dependent on Ajax. In such websites, content for a particular module or a section of a page has to be fetched & rendered on the fly.
+
+Therefore, server-side rendering doesn’t help much. For every Ajax-request, instead of sending just the required content to the client, the approach generates the entire page on the server. This process consumes unnecessary bandwidth & also fails to provide a smooth user experience.
+
+A big downside to this is once the number of concurrent users on the website rises, it puts an unnecessary load on the server.
+
+Client-side rendering works best for modern dynamic Ajax-based websites.
+
+Though we can leverage a hybrid approach, to get the most out of both techniques. We can use server-side rendering for the home page & for the other static content on our website & use client-side rendering for the dynamic pages.
+
+
 
 
 ## System Design Readings
@@ -53,3 +190,5 @@ Client-Server architecture is the fundamental building block of the web. The arc
 * [MultiTenant Design] https://docs.microsoft.com/en-us/azure/azure-sql/database/saas-tenancy-app-design-patterns
 * [MultiTenant Design] https://github.com/uglide/azure-content/blob/master/articles/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications.md
 * [MultiTenant Design] https://engineering.opsgenie.com/how-to-design-a-modern-multi-tenant-saas-application-with-auth0-45c446e825b7
+* [HTTP Protocol] : https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+* [Server Sent Events]: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events
