@@ -1,4 +1,13 @@
+
 # AMAZON IAM, STS, FEDERATION AND SINGLE SIGN-ON
+
+## FEDERATION : Creatiion of the trusted relationship between External Identity Provider and AWS.
+![image](https://user-images.githubusercontent.com/13011167/118425404-c7750380-b6e6-11eb-9317-e90ef82c80ed.png)
+
+![image](https://user-images.githubusercontent.com/13011167/118426751-7581ad00-b6e9-11eb-924f-9583716e1af7.png)
+
+# SHARED RESPONSIBILITY
+![image](https://user-images.githubusercontent.com/13011167/118427396-b4fcc900-b6ea-11eb-8959-4c623acbe2d2.png)
 
 ### AWS:IAM:An introduction
 * The "identity" aspect of AWS Identity and Access Management (IAM) helps us by asking a question "Who is that user?", often referred to as authentication.
