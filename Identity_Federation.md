@@ -59,7 +59,8 @@ what can access them (Resource based). Once you understand that, policies become
 ![image](https://user-images.githubusercontent.com/13011167/120059068-a7412f00-c06c-11eb-8d31-c5b111ae4227.png)
 
 
-
+# AWS MANAGED AD / SIMPLE AD/ AD CONNECTOR SUMMARY
+![image](https://user-images.githubusercontent.com/13011167/120074987-147cb080-c0bd-11eb-874c-c0c8c19f9cec.png)
 
 
 
