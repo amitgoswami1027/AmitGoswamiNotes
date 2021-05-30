@@ -12,6 +12,36 @@ Key characteristics of a distributed system include Scalability, Reliability, Av
 However, it is quite difficult to develop a precise cost model that would accurately take into account all these performance factors; therefore, we have to live with rough but robust estimates of the system behavior.
 #### SERVICEABILITY & MAINTAINABILITY - Serviceability or manageability is the simplicity and speed with which a system can be repaired or maintained; if the time to fix a failed system increases, then availability will decrease. 
 
+# SYSTEM DESIGN PATTERNS
+## 1. BLOOM FILTERS
+PROBLEM: If we have a large set of structured data (identified by record IDs) stored in a set of data files, what is the most efficient way to know which file might contain our required data? We don’t want to read each file, as that would be slow, and we have to read a lot of data from the disk. One solution can be to build an index on each data file and store it in a separate index file. This index can map each record ID to its offset in the data file. Each index file will be sorted on the record ID. Now, if we want to search an ID in this index, the best we can do is a Binary Search. Can we do better than that?
+
+The Bloom filter data structure tells whether an element may be in a set, or definitely is not. The only possible errors are false positives, i.e., a search for a nonexistent element might give an incorrect answer. With more elements in the filter, the error rate increases. An empty Bloom filter is a bit-array of m bits, all set to 0. There are also k different hash functions, each of which maps a set element to one of the m bit positions.
+
+A Bloom filter is a data structure designed to tell you, rapidly and memory-efficiently, whether an element is present in a set. The price paid for this efficiency is that a Bloom filter is a probabilistic data structure: it tells us that the element either definitely is not in the set or may be in the set he base data structure of a Bloom filter is a Bit Vector. 
+
+Suppose you are creating an account on Geekbook, you want to enter a cool username, you entered it and got a message, “Username is already taken”. You added your birth date along username, still no luck. Now you have added your university roll number also, still got “Username is already taken”. It’s really frustrating, isn’t it? But have you ever thought how quickly Geekbook check availability of username by searching millions of username registered with it. There are many ways to do this job –  
+* Linear search : Bad idea!
+* Binary Search : Store all username alphabetically and compare entered username with middle one in list, If it matched, then username is taken otherwise figure out , whether entered username will come before or after middle one and if it will come after, neglect all the usernames before middle one(inclusive). Now search after middle one and repeat this process until you got a match or search end with no match.This technique is better and promising but still it requires multiple steps. But, There must be something better!!
+
+Bloom Filter is a data structure that can do this job. A Bloom filter is a space-efficient probabilistic data structure that is used to test whether an element is a member of a set. For example, checking availability of username is set membership problem, where the set is the list of all registered username. The price we pay for efficiency is that it is probabilistic in nature that means, there might be some False Positive results. False positive means, it might tell that given username is already taken but actually it’s not.
+
+![image](https://user-images.githubusercontent.com/13011167/120114529-2f265680-c19d-11eb-996a-29e269f9b043.png)
+
+The element X definitely is not in the set, since it hashes to a bit position containing 0.
+For a fixed error rate, adding a new element and testing for membership are both constant time operations, and a filter with room for ‘n’ elements requires O(n)O(n)O(n) space.
+
+## 2. Consistent Hashing
+The act of distributing data across a set of nodes is called data partitioning. A naive approach will use a suitable hash function that maps the data key to a number. Then, find the server by applying modulo on this number and the total number of servers.
+Use the Consistent Hashing algorithm to distribute data across nodes. Consistent Hashing maps data to physical nodes and ensures that only a small set of keys move when servers are added or removed
+
+## 3. Quorum
+In Distributed Systems, data is replicated across multiple servers for fault tolerance and high availability. Once a system decides to maintain multiple copies of data, another problem arises: how to make sure that all replicas are consistent, i.e., if they all have the latest copy of the data and that all clients see the same view of the data?
+In a distributed environment, a quorum is the minimum number of servers on which a distributed operation needs to be performed successfully before declaring the operation’s overall success.
+
+
+
+
 ## Software Architecture Tiers
 Think of a tier as a logical separation of components in an application or a service. And when I say separation, I mean physical separation at the component level, not the code level. 
 What do I mean by components?
