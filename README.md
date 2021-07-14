@@ -43,8 +43,7 @@ Separation of concerns kind of means the same thing, be concerned about your wor
 #### Note: There is another name for n-tier apps, “distributed applications.” But, I don’t think it’s safe to use the word “distributed” yet, as the term distributed brings along a lot of complex stuff with it. At this point, it would confuse rather than help us. Although I will discuss distributed architecture in this course, for now, we will just stick with the term n-tier applications.
 
 
-
-## WEB ARCHITECTURE
+# WEB ARCHITECTURE
 Web architecture involves multiple components like database, message queue, cache, user interface & all running in conjunction with each other to form an online service.
 ![image](https://user-images.githubusercontent.com/13011167/115167818-73bace80-a0d6-11eb-9bc2-bd738a4bcc54.png)
 
