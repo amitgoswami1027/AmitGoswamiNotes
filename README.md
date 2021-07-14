@@ -95,7 +95,7 @@ The client & the server have a request-response model. The client sends the requ
 * The client doesn’t have to worry about sending requests to the server, for data, every now & then. This saves a lot of network bandwidth & cuts down the load on the server by notches.
 * This is also known as a Callback. Client phones the server for information. The server responds, Hey!! I don’t have the information right now but I’ll call you back whenever it is available.
 
-### HTTP PULL - Polling with Ajax ( Asynchronous Javascript & XML) : There are two ways of pulling/fetching data from the server :
+## HTTP PULL - Polling with Ajax ( Asynchronous Javascript & XML) : There are two ways of pulling/fetching data from the server :
 * The first is sending an HTTP GET request to the server manually by triggering an event, like by clicking a button or any other element on the web page.
 * The other is fetching data dynamically at regular intervals by using AJAX without any human intervention.
 
@@ -110,7 +110,7 @@ The client & the server have a request-response model. The client sends the requ
 * AJAX is commonly used with the Jquery framework to implement the asynchronous behaviour on the UI.
 * This dynamic technique of requesting information from the server after regular intervals is known as Polling.
 
-### HTTP PUSH : 
+## HTTP PUSH : 
 * TTL : In the regular client-server communication, which is HTTP PULL, there is a Time to Live (TTL) for every request. It could be 30 secs to 60 secs, varies from browser to browser.If the client doesn’t receive a response from the server within the TTL, the browser kills the connection & the client has to re-send the request hoping it would receive the data from the server before the TTL ends this time.
 * Open connections consume resources & there is a limit to the number of open connections a server can handle at one point in time. If the connections don’t close & new ones are being introduced, over time, the server will run out of memory. Hence, the TTL is used in client-server communication.
 * But what if we are certain that the response will take more time than the TTL set by the browser? ---> PERSISTENT CONNECTIONS ARE REQUIRED????
