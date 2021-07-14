@@ -185,7 +185,22 @@ Client-side rendering works best for modern dynamic Ajax-based websites.
 
 Though we can leverage a hybrid approach, to get the most out of both techniques. We can use server-side rendering for the home page & for the other static content on our website & use client-side rendering for the dynamic pages.
 
+# UNDERSTANDING DNS
+* When a user types in the URL of the website in their browser and hits enter, this event is known as DNS querying.
+* There are four key components, or a group of servers, that make up the DNS infrastructure. These are:
+  * DNS Recursive nameserver aka DNS Resolver
+  * Root nameserver
+  * Top-Level Domain nameserver
+  * Authoritative nameserver
+* So, when the user hits enter after typing in the domain name into their browser, the browser sends a request to the DNS Recursive nameserver, also known as the DNS Resolver.
+* The role of DNS Resolver is to receive the client request and forward it to the Root nameserver to get the address of the Top-Level domain nameserver.
+* So, once the DNS Resolver forwards the request to the Root nameserver, the Root nameserver returns the address of the Top-Level domain nameserver in response. As an example, the top-level domain for amazon.com is .com.
+* Once the DNS Resolver receives the address of the top-level domain nameserver, it sends a request to it to fetch the details of the domain name. Top Level domain nameservers hold the data for domains using their top-level domains
+* Once the top-level domain name server receives the request from the Resolver, it returns the IP address of amazon.com domain name server.
 
+![image](https://user-images.githubusercontent.com/13011167/111790724-8334d500-88e8-11eb-82e2-6217f309656f.png)
+
+![image](https://user-images.githubusercontent.com/13011167/111790847-a495c100-88e8-11eb-81e1-25a5178c11fa.png)
 
 # DISTRIBUTED SYSTEMS
 Key characteristics of a distributed system include Scalability, Reliability, Availability, Efficiency, and Manageability.
