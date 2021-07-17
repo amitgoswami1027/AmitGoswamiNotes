@@ -186,6 +186,8 @@ Client-side rendering works best for modern dynamic Ajax-based websites.
 Though we can leverage a hybrid approach, to get the most out of both techniques. We can use server-side rendering for the home page & for the other static content on our website & use client-side rendering for the dynamic pages.
 
 # UNDERSTANDING DNS
+![image](https://user-images.githubusercontent.com/13011167/111790724-8334d500-88e8-11eb-82e2-6217f309656f.png)
+
 * When a user types in the URL of the website in their browser and hits enter, this event is known as DNS querying.
 * There are four key components, or a group of servers, that make up the DNS infrastructure. These are:
   * DNS Recursive nameserver aka DNS Resolver
@@ -196,11 +198,19 @@ Though we can leverage a hybrid approach, to get the most out of both techniques
 * The role of DNS Resolver is to receive the client request and forward it to the Root nameserver to get the address of the Top-Level domain nameserver.
 * So, once the DNS Resolver forwards the request to the Root nameserver, the Root nameserver returns the address of the Top-Level domain nameserver in response. As an example, the top-level domain for amazon.com is .com.
 * Once the DNS Resolver receives the address of the top-level domain nameserver, it sends a request to it to fetch the details of the domain name. Top Level domain nameservers hold the data for domains using their top-level domains
+*  For instance, .com top-level domain nameserver will contain information on domains using .com. Similarly, a .edu Top-Level domain nameserver will hold information on domains using .edu.Since our domain is amazon.com, the DNS Resolver will route the request to the .com top-level domain name server.
 * Once the top-level domain name server receives the request from the Resolver, it returns the IP address of amazon.com domain name server.
-
-![image](https://user-images.githubusercontent.com/13011167/111790724-8334d500-88e8-11eb-82e2-6217f309656f.png)
+* amazon.com domain nameserver is the last server in the DNS query lookup process. The nameserver is responsible for amazon.com domain and is also known as the Authoritative nameserver. This nameserver is owned by the owner of the domain name.
+* Then, DNS Resolver fires a query to the Authoritative nameserver, and it returns the IP address of amazon.com website to the DNS Resolver. DNS Resolver caches the data and forwards it to the client.
+* On receiving the response, the browser sends a request to amazon.com website’s IP address to fetch data from their servers.
 
 ![image](https://user-images.githubusercontent.com/13011167/111790847-a495c100-88e8-11eb-81e1-25a5178c11fa.png)
+
+## DNS load balancing
+* DNS load balancing enables the authoritative server to return different IP addresses of a certain domain to the clients. Every time it receives a query for an IP, it returns a list of IP addresses of a domain to the client.With every request, the authoritative server changes the order of the IP addresses in the list in a round-robin fashion.
+* As the client receives the list, it sends out a request to the first IP address on the list to fetch the data from the website. The reason for returning a list of IP addresses to the client is to enable it to use other IP addresses in the list in case the first doesn’t return a response within a stipulated time.
+* When another client sends out a request for an IP address to the authoritative server, it re-orders the list and puts another IP address at the top of the list following the round-robin algorithm.
+* DNS load balancing is largely used by companies to distribute traffic across multiple data centers that the application runs in. However, this approach has several limitations. For instance, it does not take into account the existing load on the servers, the content they hold, their request processing time, their in-service status, and so on.Also, since these IP addresses are cached by the client’s machine and the DNS Resolver, there is always a possibility of a request being routed to a machine that is out of service.
 
 # DISTRIBUTED SYSTEMS
 Key characteristics of a distributed system include Scalability, Reliability, Availability, Efficiency, and Manageability.
