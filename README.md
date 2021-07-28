@@ -275,3 +275,4 @@ In a distributed environment, a quorum is the minimum number of servers on which
 * [MultiTenant Design] https://engineering.opsgenie.com/how-to-design-a-modern-multi-tenant-saas-application-with-auth0-45c446e825b7
 * [HTTP Protocol] : https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
 * [Server Sent Events]: https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events
+* [Web Sockets Vs Web Hooks]: https://medium.com/event-driven-utopia/event-driven-apis-understanding-the-principles-c3208308d4b2
