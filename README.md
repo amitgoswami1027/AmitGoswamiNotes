@@ -212,6 +212,11 @@ Though we can leverage a hybrid approach, to get the most out of both techniques
 * When another client sends out a request for an IP address to the authoritative server, it re-orders the list and puts another IP address at the top of the list following the round-robin algorithm.
 * DNS load balancing is largely used by companies to distribute traffic across multiple data centers that the application runs in. However, this approach has several limitations. For instance, it does not take into account the existing load on the servers, the content they hold, their request processing time, their in-service status, and so on.Also, since these IP addresses are cached by the client’s machine and the DNS Resolver, there is always a possibility of a request being routed to a machine that is out of service.
 
+# MESSAGE QUEUES
+Message queue, as the name says, is a queue that routes messages from the source to the destination, or from the sender to the receiver. A publish-subscribe(pub-sub) model is the model where multiple consumers receive the same message sent from a single or multiple producers. A real-world newspaper service is a good analogy for the publish-subscribe pattern. Consumers subscribe to a newspaper service, and the service delivers the news to multiple consumers of its service every single day.
+The use case for * Point-to-point* communication is pretty simple. It’s where the message from the producer is consumed by only one consumer.It’s like a one-to-one relationship, while a publish-subscribe model is a one to many relationships.
+Queuing tech widely used in the industry, are RabbitMQ, ActiveMQ, Apache Kafka, etc.
+
 # DISTRIBUTED SYSTEMS
 Key characteristics of a distributed system include Scalability, Reliability, Availability, Efficiency, and Manageability.
 #### SCALABILITY -  Scalability is the capability of a system, process, or a network to grow and manage increased demand. A system may have to scale because of many reasons like increased data volume or increased amount of work, e.g., number of transactions. A scalable system would like to achieve this scaling without performance loss. 
