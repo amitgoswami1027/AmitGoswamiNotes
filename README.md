@@ -217,6 +217,15 @@ Message queue, as the name says, is a queue that routes messages from the source
 The use case for * Point-to-point* communication is pretty simple. It’s where the message from the producer is consumed by only one consumer.It’s like a one-to-one relationship, while a publish-subscribe model is a one to many relationships.
 Queuing tech widely used in the industry, are RabbitMQ, ActiveMQ, Apache Kafka, etc.
 
+# CAP THEOREM
+#### The CAP theorem simply states that in case of a network failure, when a few of the nodes of the system are down, we have to make a choice between availability and consistency.
+#### If we pick availability, this means when a few nodes go down, the other nodes are available to the users for making updates. In this situation, the system is inconsistent because the nodes that are down don’t get updated with the new data. When they come back online, if a user fetches the data from them, they’ll return the old values they had when they went down.
+#### If we pick consistency, in this scenario, we have to lock down all the nodes for further writes until the nodes that have gone down come back online. This ensures the strong consistency of the system because all the nodes will have the same entity values.
+#### Picking between availability and consistency largely depends on our use case and the business requirements. We have been through this in great detail. Also, the design of the distributed systems forces us to choose one. We can’t have both availability and consistency at the same time.Nodes spread around the globe will take some time to reach a consensus. It’s impossible to have zero-latency unless we transit data faster than or at the speed of time
+
+# DATA DRIVEN SYSTEMS
+Our world today is governed by the data driven systems. With IOT entities have generated the self awareness to certain degree and they are generating and transmitting data at an unprecendented rate. They are also capable of communicating with each other and taking decisions without the human intenvenstion. Data ingestion is a collective term for the process of collecting data streaming in from several different sources and making it ready to be processed by the system.
+
 # DISTRIBUTED SYSTEMS
 Key characteristics of a distributed system include Scalability, Reliability, Availability, Efficiency, and Manageability.
 #### SCALABILITY -  Scalability is the capability of a system, process, or a network to grow and manage increased demand. A system may have to scale because of many reasons like increased data volume or increased amount of work, e.g., number of transactions. A scalable system would like to achieve this scaling without performance loss. 
