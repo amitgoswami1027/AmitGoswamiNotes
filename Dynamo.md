@@ -31,9 +31,9 @@ Many services on Amazon’s platform require only primary-key access to a data s
 ## System APIs 
 The Dynamo clients use put() and get() operations to write and read data corresponding to a specified key. This key uniquely identifies an object.
 
-    get(key): The get operation finds the nodes where the object associated with the given key is located and returns either a single object or a list of objects with conflicting versions along with a context. The context contains encoded metadata about the object that is meaningless to the caller and includes information such as the version of the object (more on this below).
+* get(key): The get operation finds the nodes where the object associated with the given key is located and returns either a single object or a list of objects with conflicting versions along with a context. The context contains encoded metadata about the object that is meaningless to the caller and includes information such as the version of the object (more on this below).
 
-    put(key, context, object): The put operation finds the nodes where the object associated with the given key should be stored and writes the given object to the disk. The context is a value that is returned with a get operation and then sent back with the put operation. The context is always stored along with the object and is used like a cookie to verify the validity of the object supplied in the put request.
+* put(key, context, object): The put operation finds the nodes where the object associated with the given key should be stored and writes the given object to the disk. The context is a value that is returned with a get operation and then sent back with the put operation. The context is always stored along with the object and is used like a cookie to verify the validity of the object supplied in the put request.
 
 Dynamo treats both the object and the key as an arbitrary array of bytes (typically less than 1 MB). It applies the MD5 hashing algorithm on the key to generate a 128-bit identifier which is used to determine the storage nodes that are responsible for serving the key.
 
@@ -76,9 +76,9 @@ Adding and removing nodes in any distributed system is quite common. Existing no
 
 As we saw above, the basic Consistent Hashing algorithm assigns a single token (or a consecutive hash range) to each physical node. This was a static division of ranges that requires calculating tokens based on a given number of nodes. This scheme made adding or replacing a node an expensive operation, as, in this case, we would like to rebalance and distribute the data to all other nodes, resulting in moving a lot of data. Here are a few potential issues associated with a manual and fixed division of the ranges:
 
-    Adding or removing nodes: Adding or removing nodes will result in recomputing the tokens causing a significant administrative overhead for a large cluster.
-    Hotspots: Since each node is assigned one large range, if the data is not evenly distributed, some nodes can become hotspots.
-    Node rebuilding: Since each node’s data is replicated on a fixed number of nodes (discussed later), when we need to rebuild a node, only its replica nodes can provide the data. This puts a lot of pressure on the replica nodes and can lead to service degradation.
+* Adding or removing nodes: Adding or removing nodes will result in recomputing the tokens causing a significant administrative overhead for a large cluster.
+* Hotspots: Since each node is assigned one large range, if the data is not evenly distributed, some nodes can become hotspots.
+* Node rebuilding: Since each node’s data is replicated on a fixed number of nodes (discussed later), when we need to rebuild a node, only its replica nodes can provide the data. This puts a lot of pressure on the replica nodes and can lead to service degradation.
 
 To handle these issues, Dynamo introduced a new scheme for distributing the tokens to physical nodes. Instead of assigning a single token to a node, the hash range is divided into multiple smaller ranges, and each physical node is assigned multiple of these smaller ranges. Each of these subranges is called a Vnode. With Vnodes, instead of a node being responsible for just one token, it is responsible for many tokens (or subranges).
 
@@ -127,13 +127,13 @@ In a distributed system, this assumption does not hold. The problem is clock ske
 ## What is a vector clock?
 Instead of employing tight synchronization mechanics, Dynamo uses something called vector clock in order to capture causality between different versions of the same object. A vector clock is effectively a (node, counter) pair. One vector clock is associated with every version of every object stored in Dynamo. One can determine whether two versions of an object are on parallel branches or have a causal ordering by examining their vector clocks. If the counters on the first object’s clock are less-than-or-equal to all of the nodes in the second clock, then the first is an ancestor of the second and can be forgotten. Otherwise, the two changes are considered to be in conflict and require reconciliation. Dynamo resolves these conflicts at read-time. Let’s understands this with an example:
 
-    Server A serves a write to key k1, with value foo. It assigns it a version of [A:1]. This write gets replicated to server B.
-    Server A serves a write to key k1, with value bar. It assigns it a version of [A:2]. This write also gets replicated to server B.
-    A network partition occurs. A and B cannot talk to each other.
-    Server A serves a write to key k1, with value baz. It assigns it a version of [A:3]. It cannot replicate it to server B, but it gets stored in a hinted handoff buffer on another server.
-    Server B sees a write to key k1, with value bax. It assigns it a version of [B:1]. It cannot replicate it to server A, but it gets stored in a hinted handoff buffer on another server.
-    The network heals. Server A and B can talk to each other again.
-    Either server gets a read request for key k1. It sees the same key with different versions [A:3] and [A:2][B:1], but it does not know which one is newer. It returns both and tells the client to figure out the version and write the newer version back into the system.
+* Server A serves a write to key k1, with value foo. It assigns it a version of [A:1]. This write gets replicated to server B.
+* Server A serves a write to key k1, with value bar. It assigns it a version of [A:2]. This write also gets replicated to server B.
+* A network partition occurs. A and B cannot talk to each other.
+* Server A serves a write to key k1, with value baz. It assigns it a version of [A:3]. It cannot replicate it to server B, but it gets stored in a hinted handoff buffer on another server.
+* Server B sees a write to key k1, with value bax. It assigns it a version of [B:1]. It cannot replicate it to server A, but it gets stored in a hinted handoff buffer on another server.
+* The network heals. Server A and B can talk to each other again.
+* Either server gets a read request for key k1. It sees the same key with different versions [A:3] and [A:2][B:1], but it does not know which one is newer. It returns both and tells the client to figure out the version and write the newer version back into the system.
 
 ![image](https://user-images.githubusercontent.com/13011167/129664056-69c849ad-7f98-4a7e-a915-148c264e1964.png)
 
@@ -154,8 +154,8 @@ Instead of vector clocks, Dynamo also offers ways to resolve the conflicts autom
 # The Life of Dynamo’s put() & get() Operations
 Dynamo clients can use one of the two strategies to choose a node for their get() and put() requests:
 
-    Clients can route their requests through a generic load balancer.
-    Clients can use a partition-aware client library that routes the requests to the appropriate coordinator nodes with lower latency.
+* Clients can route their requests through a generic load balancer.
+* Clients can use a partition-aware client library that routes the requests to the appropriate coordinator nodes with lower latency.
 
 In the first case, the load balancer decides which way the request would be routed, while in the second strategy, the client selects the node to contact. Both approaches are beneficial in their own ways.
 
@@ -249,22 +249,22 @@ Because Dynamo is completely decentralized and does not rely on a central/leader
 ## Characteristics of Dynamo
 Here are a few reasons behind Dynamo’s popularity:
 
-    Distributed: Dynamo can run on a large number of machines.
-    Decentralized: Dynamo is decentralized; there is no need for any central coordinator to oversee operations. All nodes are identical and can perform all functions of Dynamo.
-    Scalable: By adding more nodes to the cluster, Dynamo can easily be scaled horizontally. No manual intervention or rebalancing is required. Additionally, Dynamo achieves linear scalability and proven fault-tolerance on commodity hardware.
-    Highly Available: Dynamo is fault-tolerant, and the data remains available even if one or several nodes or data centers go down.
-    Fault-tolerant and reliable: Since data is replicated to multiple nodes, fault-tolerance is pretty high.
-    Tunable consistency: With Dynamo, applications can adjust the trade-off between availability and consistency of data, typically by configuring replication factor and consistency level settings.
-    Durable: Dynamo stores data permanently.
-    Eventually Consistent: Dynamo accepts the trade-off of strong consistency in favor of high availability.
+* Distributed: Dynamo can run on a large number of machines.
+* Decentralized: Dynamo is decentralized; there is no need for any central coordinator to oversee operations. All nodes are identical and can perform all functions of Dynamo.
+* Scalable: By adding more nodes to the cluster, Dynamo can easily be scaled horizontally. No manual intervention or rebalancing is required. Additionally, Dynamo achieves linear scalability and proven fault-tolerance on commodity hardware.
+* Highly Available: Dynamo is fault-tolerant, and the data remains available even if one or several nodes or data centers go down.
+* Fault-tolerant and reliable: Since data is replicated to multiple nodes, fault-tolerance is pretty high.
+* Tunable consistency: With Dynamo, applications can adjust the trade-off between availability and consistency of data, typically by configuring replication factor and consistency level settings.
+* Durable: Dynamo stores data permanently.
+* Eventually Consistent: Dynamo accepts the trade-off of strong consistency in favor of high availability.
 
 ## Criticism on Dynamo
 The following list contains criticism on Dynamo’s design:
 
-    Each Dynamo node contains the entire Dynamo routing table. This is likely to affect the scalability of the system as this routing table will grow larger and larger as nodes are added to the system.
-    Dynamo seems to imply that it strives for symmetry, where every node in the system has the same set of roles and responsibilities, but later, it specifies some nodes as seeds. Seeds are special nodes that are externally discoverable. These are used to help prevent logical partitions in the Dynamo ring. This seems like it may violate Dynamo’s symmetry principle.
-    Although security was not a concern as Dynamo was built for internal use only, DHTs can be susceptible to several different types of attacks. While Amazon can assume a trusted environment, sometimes a buggy software can act in a manner quite similar to a malicious actor.
-    Dynamo’s design can be described as a “leaky abstraction,” where client applications are often asked to manage inconsistency, and the user experience is not 100% seamless. For example, inconsistencies in the shopping cart items may lead users to think that the website is buggy or unreliable.
+* Each Dynamo node contains the entire Dynamo routing table. This is likely to affect the scalability of the system as this routing table will grow larger and larger as nodes are added to the system.
+* Dynamo seems to imply that it strives for symmetry, where every node in the system has the same set of roles and responsibilities, but later, it specifies some nodes as seeds. Seeds are special nodes that are externally discoverable. These are used to help prevent logical partitions in the Dynamo ring. This seems like it may violate Dynamo’s symmetry principle.
+* Although security was not a concern as Dynamo was built for internal use only, DHTs can be susceptible to several different types of attacks. While Amazon can assume a trusted environment, sometimes a buggy software can act in a manner quite similar to a malicious actor.
+* Dynamo’s design can be described as a “leaky abstraction,” where client applications are often asked to manage inconsistency, and the user experience is not 100% seamless. For example, inconsistencies in the shopping cart items may lead users to think that the website is buggy or unreliable.
 
 ## Datastores developed on the principles of Dynamo
 Dynamo is not open-source and was built for services running within Amazon. Two of the most famous datastores built on the principles of Dynamo are Riak and Cassandra. Riak is a distributed NoSQL key-value data store that is highly available, scalable, fault-tolerant, and easy to operate. Cassandra is a distributed, decentralized, scalable, and highly available NoSQL wide-column database. Here is how they adopted different algorithms offered by Dynamo:
@@ -295,25 +295,19 @@ The following table presents a summary of the list of techniques Dynamo uses and
 Here is a summary of system design patterns used in Dynamo:
 
     Consistent Hashing: Dynamo uses Consistent Hashing to distribute its data across nodes.
-
     Quorum: To ensure data consistency, each Dynamo write operation can be configured to be successful only if the data has been written to at least a quorum of replica nodes.
-
     Gossip protocol: Dynamo uses gossip protocol that allows each node to keep track of state information about the other nodes in the cluster.
-
     Hinted Handoff: Dynamo nodes use Hinted Handoff to remember the write operation for failing nodes.
-
     Read Repair: Dynamo uses ‘Read Repair’ to push the latest version of the data to nodes with the older versions.
-
     Vector clocks: To reconcile concurrent updates on an object Dynamo uses Vector clocks.
-
     Merkle trees: For anti-entropy and to resolve conflicts in the background, Dynamo uses Merkle trees.
 
 ## Improtant Links
 * [Amazon Dynamo] https://www.allthingsdistributed.com/2007/10/amazons_dynamo.html
 * [Eventual Consistency] https://www.allthingsdistributed.com/2007/12/eventually_consistent.html
-* [Big Table]: https://research.google/pubs/pub27898/
-* [CRDT]: https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type
-* [A Decade of Dynamo]: https://www.allthingsdistributed.com/2017/10/a-decade-of-dynamo.html
-* [RIAK]; https://docs.riak.com/riak/kv/2.2.0/learn/dynamo/
+* [Big Table] https://research.google/pubs/pub27898
+* [CRDT] https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type
+* [A Decade of Dynamo] https://www.allthingsdistributed.com/2017/10/a-decade-of-dynamo.html
+* [RIAK] https://docs.riak.com/riak/kv/2.2.0/learn/dynamo/
 * [Dynamo Architecture] https://www.youtube.com/watch?v=w96lLsbI1q8
 * [Dynamo a Flawed Architecture] https://news.ycombinator.com/item?id=915212
