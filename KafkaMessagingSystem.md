@@ -71,5 +71,86 @@ ZooKeeper is a distributed key-value store and is used for coordination and stor
 ![image](https://user-images.githubusercontent.com/13011167/132288836-a4f91634-ac28-405c-8ed3-cf2d8282ff64.png)
 
 ## KAFKA DEEP DIVE
+* Kafka is simply a collection of topics. As topics can get quite big, they are split into partitions of a smaller size for better performance and scalability. 
+* Kafka topics are partitioned, meaning a topic is spread over a number of ‘fragments’. Each partition can be placed on a separate Kafka broker. When a new message is published on a topic, it gets appended to one of the topic’s partitions. The producer controls which partition it publishes messages to based on the data. For example, a producer can decide that all messages related to a particular ‘city’ go to the same partition.
+* Essentially, a partition is an ordered sequence of messages. Producers continually append new messages to partitions. Kafka guarantees that all messages inside a partition are stored in the sequence they came in. Ordering of messages is maintained at the partition level, not across the topic.
+
+![image](https://user-images.githubusercontent.com/13011167/132289200-88a1cc66-c22c-4cae-90d5-f610b905dd72.png)
+
+* A unique sequence ID called an offset gets assigned to every message that enters a partition. These numerical offsets are used to identify every message’s sequential position within a topic’s partition.
+* Offset sequences are unique only to each partition. This means, to locate a specific message, we need to know the Topic, Partition, and Offset number.
+* Producers can choose to publish a message to any partition. If ordering within a partition is not needed, a round-robin partition strategy can be used, so records get distributed evenly across partitions.
+* Placing each partition on separate Kafka brokers enables multiple consumers to read from a topic in parallel. That means, different consumers can concurrently read different partitions present on separate brokers.
+* Placing each partition of a topic on a separate broker also enables a topic to hold more data than the capacity of one server.
+* Messages once written to partitions are immutable and cannot be updated.
+* A producer can add a ‘key’ to any message it publishes. Kafka guarantees that messages with the same key are written to the same partition.
+* Each broker manages a set of partitions belonging to different topics.
+
+Kafka follows the principle of a dumb broker and smart consumer. This means that Kafka does not keep track of what records are read by the consumer.Every topic can be replicated to multiple Kafka brokers to make the data fault-tolerant and highly available. Each topic partition has one leader broker and multiple replica (follower) brokers. Instead, consumers, themselves, poll Kafka for new messages and say what records they want to read. This allows them to increment/decrement the offset they are at as they wish, thus being able to replay and reprocess messages. Consumers can read messages starting from a specific offset and are allowed to read from any offset they choose. This also enables consumers to join the cluster at any point in time.
+
+### LEADER: A leader is the node responsible for all reads and writes for the given partition. Every partition has one Kafka broker acting as a leader.
+### FOLLOWER: To handle single point of failure, Kafka can replicate partitions and distribute them across multiple broker servers called followers. Each follower’s responsibility is to replicate the leader’s data to serve as a ‘backup’ partition. This also means that any follower can take over the leadership if the leader goes down. 
+### ZOOKEEPER: Kafka stores the location of the leader of each partition in ZooKeeper. As all writes/reads happen at/from the leader, producers and consumers directly talk to ZooKeeper to find a partition leader.
+
+![image](https://user-images.githubusercontent.com/13011167/132289795-65d4a6c9-a8d3-434b-b7f1-7d44f92be021.png)
+### HIGH WATER MARK
+To ensure data consistency, the leader broker never returns (or exposes) messages which have not been replicated to a minimum set of ISRs. For this, brokers keep track of the high-water mark, which is the highest offset that all ISRs of a particular partition share. The leader exposes data only up to the high-water mark offset and propagates the high-water mark offset to all followers. Let’s understand this with an example
+
+In the figure below, the leader does not return messages greater than offset ‘4’, as it is the highest offset message that has been replicated to all follower brokers.If a consumer reads the record with offset ‘7’ from the leader (Broker 1), and later, if the current leader fails, and one of the followers becomes the leader before the record is replicated to the followers, the consumer will not be able to find that message on the new leader. The client, in this case, will experience a non-repeatable read. Because of this possibility, Kafka brokers only return records up to the high-water mark.
+
+![image](https://user-images.githubusercontent.com/13011167/132290009-6bcabfd0-7fd4-4e8a-8d59-5d22c081164c.png)
+
+# What is a consumer group?
+A consumer group is basically a set of one or more consumers working together in parallel to consume messages from topic partitions. Messages are equally divided among all the consumers of a group, with no two consumers receiving the same message.
+## Distributing partitions to consumers within a consumer group
+Kafka ensures that only a single consumer reads messages from any partition within a consumer group. In other words, topic partitions are a unit of parallelism – only one consumer can work on a partition in a consumer group at a time. If a consumer stops, Kafka spreads partitions across the remaining consumers in the same consumer group. Similarly, every time a consumer is added to or removed from a group, the consumption is rebalanced within the group.
+
+![image](https://user-images.githubusercontent.com/13011167/132290494-e8793878-44bf-4c83-ae5e-15a239265eeb.png)
+
+* Consumers pull messages from topic partitions. Different consumers can be responsible for different partitions. Kafka can support a large number of consumers and retain large amounts of data with very little overhead. By using consumer groups, consumers can be parallelized so that multiple consumers can read from multiple partitions on a topic, allowing a very high message processing throughput. The number of partitions impacts consumers’ maximum parallelism, as there cannot be more consumers than partitions.
+* Kafka stores the current offset per consumer group per topic per partition, as it would for a single consumer. This means that unique messages are only sent to a single consumer in a consumer group, and the load is balanced across consumers as equally as possible.
+* When the number of consumers exceeds the number of partitions in a topic, all new consumers wait in idle mode until an existing consumer unsubscribes from that partition. Similarly, as new consumers join a consumer group, Kafka initiates a rebalancing if there are more consumers than partitions. Kafka uses any unused consumers as failovers.
+
+Here is a summary of how Kafka manages the distribution of partitions to consumers within a consumer group:
+
+Number of consumers in a group = number of partitions: each consumer consumes one partition.
+Number of consumers in a group > number of partitions: some consumers will be idle.
+Number of consumers in a group < number of partitions: some consumers will consume more partitions than others.
+
+# KAFKA WORKFLOW
+## Kafka workflow as pub-sub messaging
+* Producers publish messages on a topic.
+* Kafka broker stores messages in the partitions configured for that particular topic. If the producer did not specify the partition in which the message should be stored, the broker ensures that the messages are equally shared between partitions. If the producer sends two messages and there are two partitions, Kafka will store one message in the first partition and the second message in the second partition.
+* Consumer subscribes to a specific topic.
+* Once the consumer subscribes to a topic, Kafka will provide the current offset of the topic to the consumer and also saves that offset in the ZooKeeper.
+* Consumer will request Kafka at regular intervals for new messages.
+* Once Kafka receives the messages from producers, it forwards these messages to the consumer.
+* Consumer will receive the message and process it.
+* Once the messages are processed, the consumer will send an acknowledgment to the Kafka broker.
+* Upon receiving the acknowledgment, Kafka increments the offset and updates it in the ZooKeeper. Since offsets are maintained in the ZooKeeper, the consumer can read the next message correctly, even during broker outages.
+* The above flow will repeat until the consumer stops sending the request.
+* Consumers can rewind/skip to the desired offset of a topic at any time and read all the subsequent messages.
+
+## Kafka workflow for consumer group
+Instead of a single consumer, a group of consumers from one consumer group subscribes to a topic, and the messages are shared among them. Let us check the workflow of this system:
+* Producers publish messages on a topic.
+* Kafka stores all messages in the partitions configured for that particular topic, similar to the earlier scenario.
+* A single consumer subscribes to a specific topic, assume Topic-01 with Group ID as Group-1.
+* Kafka interacts with the consumer in the same way as pub-sub messaging until a new consumer subscribes to the same topic, Topic-01, with the same Group ID as Group-1.
+* Once the new consumer arrives, Kafka switches its operation to share mode, such that each message is passed to only one of the subscribers of the consumer group Group-1. This message transfer is similar to queue-based messaging, as only one consumer of the group consumes a message. Contrary to queue-based messaging, messages are not removed after consumption.
+* This message transfer can go on until the number of consumers reaches the number of partitions configured for that particular topic.
+* Once the number of consumers exceeds the number of partitions, the new consumer will not receive any message until an existing consumer unsubscribes. This scenario arises because each consumer in Kafka will be assigned a minimum of one partition. Once all the partitions are assigned to the existing consumers, the new consumers will have to wait.
+
+# ROLE OF ZOOKEEPER
+A critical dependency of Apache Kafka is Apache ZooKeeper, which is a distributed configuration and synchronization service. ZooKeeper serves as the coordination interface between the Kafka brokers, producers, and consumers. Kafka stores basic metadata in ZooKeeper, such as information about brokers, topics, partitions, partition leader/followers, consumer offsets, etc.
+![image](https://user-images.githubusercontent.com/13011167/132291496-2d3acaaa-71ef-4725-86c9-2b6d007961d7.png)
+
+### ZooKeeper as the central coordinator#
+As we know, Kafka brokers are stateless; they rely on ZooKeeper to maintain and coordinate brokers, such as notifying consumers and producers of the arrival of a new broker or failure of an existing broker, as well as routing all requests to partition leaders. ZooKeeper is used for storing all sorts of metadata about the Kafka cluster:
+* It maintains the last offset position of each consumer group per partition, so that consumers can quickly recover from the last position in case of a failure (although modern clients store offsets in a separate Kafka topic).
+* It tracks the topics, number of partitions assigned to those topics, and leaders’/followers’ location in each partition.
+* It also manages the access control lists (ACLs) to different topics in the cluster. ACLs are used to enforce access or authorization.
+
+### How do producers or consumers find out who the leader of a partition is?
 
 
