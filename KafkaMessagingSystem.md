@@ -26,7 +26,8 @@ There are two common ways to handle messages: Queuing and Publish-Subscribe.
 
 ## WHAT IS KAFKA ?
 Apache Kafka is an open-source publish-subscribe-based messaging system (Kafka can work as a message queue too, more on this later). It is distributed, durable, fault-tolerant, and highly scalable by design. Fundamentally, it is a system that takes streams of messages from applications known as producers, stores them reliably on a central cluster (containing a set of brokers), and allows those messages to be received by applications (known as consumers) that process the messages.
-![image](https://user-images.githubusercontent.com/13011167/132287683-f321368d-3287-47d9-9771-6f24beff7fba.png)
+![image](https://user-images.githubusercontent.com/13011167/132298076-3a0ef793-e08e-4873-9b65-de334e2fc3e7.png)
+
 
 ### BACKGROUND
 Kafka was created at LinkedIn around 2010 to track various events, such as page views, messages from the messaging system, and logs from various services. Later, it was made open-source and developed into a comprehensive system which is used for:
@@ -51,7 +52,8 @@ At a high level, we can call Kafka a distributed Commit Log. A Commit Log (also 
 ## HIGH LEVEL ARCHITECTURE OF KAFKA
 ### Broker : A Kafka server is also called a broker. Brokers are responsible for reliably storing data provided by the producers and making it available to the consumers.
 ### Records : A record is a message or an event that gets stored in Kafka. Essentially, it is the data that travels from producer to consumer through Kafka. A record contains a key, a value, a timestamp, and optional metadata headers.
-![image](https://user-images.githubusercontent.com/13011167/132288312-5ec2c129-0822-4205-acd2-cc5faec590bb.png)
+![image](https://user-images.githubusercontent.com/13011167/132298180-0767075d-382b-4fa4-b55d-3584fabfa6d0.png)
+
 
 ### Topics
 Kafka divides its messages into categories called Topics. In simple terms, a topic is like a table in a database, and the messages are the rows in that table. 
