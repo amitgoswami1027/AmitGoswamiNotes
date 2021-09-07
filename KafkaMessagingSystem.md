@@ -152,5 +152,95 @@ As we know, Kafka brokers are stateless; they rely on ZooKeeper to maintain and 
 * It also manages the access control lists (ACLs) to different topics in the cluster. ACLs are used to enforce access or authorization.
 
 ### How do producers or consumers find out who the leader of a partition is?
+In the older versions of Kafka, all clients (i.e., producers and consumers) used to directly talk to ZooKeeper to find the partition leader. Kafka has moved away from this coupling, and in Kafka’s latest releases, clients fetch metadata information from Kafka brokers directly; brokers talk to ZooKeeper to get the latest metadata. In the diagram below, the producer goes through the following steps before publishing a message:
+* The producer connects to any broker and asks for the leader of ‘Partition 1’.
+* The broker responds with the identification of the leader broker responsible for ‘Partition 1’.
+* The producer connects to the leader broker to publish the message.
+
+![image](https://user-images.githubusercontent.com/13011167/132295455-24d6c86c-8977-4fc1-9709-536e7cf8ff7a.png)
+All the critical information is stored in the ZooKeeper and ZooKeeper replicates this data across its cluster, therefore, failure of Kafka broker (or ZooKeeper itself) does not affect the state of the Kafka cluster. Upon ZooKeeper failure, Kafka will always be able to restore the state once the ZooKeeper restarts after failure. Zookeeper is also responsible for coordinating the partition leader election between the Kafka brokers in case of leader failure.
+
+# What is the controller broker?
+Within the Kafka cluster, one broker is elected as the Controller. This Controller broker is responsible for admin operations, such as creating/deleting a topic, adding partitions, assigning leaders to partitions, monitoring broker failures, etc. Furthermore, the Controller periodically checks the health of other brokers in the system. In case it does not receive a response from a particular broker, it performs a failover to another broker. It also communicates the result of the partition leader election to other brokers in the system.
+
+## SPLIT BRAIN
+When a controller broker dies, Kafka elects a new controller. One of the problems is that we cannot truly know if the leader has stopped for good and has experienced an intermittent failure like a stop-the-world GC pause or a temporary network disruption. Nevertheless, the cluster has to move on and pick a new controller. If the original Controller had an intermittent failure, the cluster would end up having a so-called zombie controller. A zombie controller can be defined as a controller node that had been previously deemed dead by the cluster and has come back online. Another broker has taken its place, but the zombie controller might not know that yet. This common scenario in distributed systems with two or more active controllers (or central servers) is called split-brain.
+
+We will have two controllers under split-brain, which will be giving out potentially conflicting commands in parallel. If something like this happens in a cluster, it can result in major inconsistencies. How do we handle this situation?
+
+## GENERATION CLOCK
+Split-brain is commonly solved with a generation clock, which is simply a monotonically increasing number to indicate a server’s generation. In Kafka, the generation clock is implemented through an epoch number. If the old leader had an epoch number of ‘1’, the new one would have ‘2’. This epoch is included in every request that is sent from the Controller to other brokers. This way, brokers can now easily differentiate the real Controller by simply trusting the Controller with the highest number. The Controller with the highest number is undoubtedly the latest one, since the epoch number is always increasing. This epoch number is stored in ZooKeeper.
+
+# Producer delivery semantics
+As we know, a producer writes only to the leader broker, and the followers asynchronously replicate the data. How can a producer know that the data is successfully stored at the leader or that the followers are keeping up with the leader? Kafka offers three options to denote the number of brokers that must receive the record before the producer considers the write as successful:
+* Async: Producer sends a message to Kafka and does not wait for acknowledgment from the server. This means that the write is considered successful the moment the request is sent out. This fire-and-forget approach gives the best performance as we can write data to Kafka at network speed, but no guarantee can be made that the server has received the record in this case.
+* Committed to Leader: Producer waits for an acknowledgment from the leader. This ensures that the data is committed at the leader; it will be slower than the ‘Async’ option, as the data has to be written on disk on the leader. Under this scenario, the leader will respond without waiting for acknowledgments from the followers. In this case, the record will be lost if the leader crashes immediately after acknowledging the producer but before the followers have replicated it.
+* Committed to Leader and Quorum: Producer waits for an acknowledgment from the leader and the quorum. This means the leader will wait for the full set of in-sync replicas to acknowledge the record. This will be the slowest write but guarantees that the record will not be lost as long as at least one in-sync replica remains alive. This is the strongest available guarantee.
+
+As we can see, the above options enable us to configure our preferred trade-off between durability and performance.
+* If we would like to be sure that our records are safely stored in Kafka, we have to go with the last option – Committed to Leader and Quorum.
+* If we value latency and throughput more than durability, we can choose one of the first two options. These options will have a greater chance of losing messages but will have better speed and throughput.
+
+# Consumer delivery semantics
+A consumer can read only those messages that have been written to a set of in-sync replicas. There are three ways of providing consistency to the consumer:
+* At-most-once (Messages may be lost but are never redelivered): In this option, a message is delivered a maximum of one time only. Under this option, the consumer upon receiving a message, commit (or increment) the offset to the broker. Now, if the consumer crashes before fully consuming the message, that message will be lost, as when the consumer restarts, it will receive the next message from the last committed offset.
+* At-least-once (Messages are never lost but maybe redelivered): Under this option, a message might be delivered more than once, but no message should be lost. This scenario occurs when the consumer receives a message from Kafka, and it does not immediately commit the offset. Instead, it waits till it completes the processing. So, if the consumer crashes after processing the message but before committing the offset, it has to reread the message upon restart. Since, in this case, the consumer never committed the offset to the broker, the broker will redeliver the same message. Thus, duplicate message delivery could happen in such a scenario
+* Exactly-once (each message is delivered once and only once): It is very hard to achieve this unless the consumer is working with a transactional system. Under this option, the consumer puts the message processing and the offset increment in one transaction. This will ensure that the offset increment will happen only if the whole transaction is complete. If the consumer crashes while processing, the transaction will be rolled back, and the offset will not be incremented. When the consumer restarts, it can reread the message as it failed to process it last time. This option leads to no data duplication and no data loss but can lead to decreased throughput.
+
+# Storing messages to disks
+Kafka writes its messages to the local disk and does not keep anything in RAM. Disks storage is important for durability so that the messages will not disappear if the system dies and restarts. Disks are generally considered to be slow. However, there is a huge difference in disk performance between random block access and sequential access. Random block access is slower because of numerous disk seeks, whereas the sequential nature of writing or reading, enables disk operations to be thousands of times faster than random access. Because all writes and reads happen sequentially, Kafka has a very high throughput.
+
+Writing or reading sequentially from disks are heavily optimized by the OS, via read-ahead (prefetch large block multiples) and write-behind (group small logical writes into big physical writes) techniques.
+
+Also, modern operating systems cache the disk in free RAM. This is called Pagecache. Since Kafka stores messages in a standardized binary format unmodified throughout the whole flow (producer → broker → consumer), it can make use of the zero-copy optimization. That is when the operating system copies data from the Pagecache directly to a socket, effectively bypassing the Kafka broker application entirely.
+
+Kafka has a protocol that groups messages together. This allows network requests to group messages together and reduces network overhead. The server, in turn, persists chunks of messages in one go, and consumers fetch large linear chunks at once.
+
+All of these optimizations allow Kafka to deliver messages at near network-speed.
+
+## Record retention in Kafka#
+By default, Kafka retains records until it runs out of disk space. We can set time-based limits (configurable retention period), size-based limits (configurable based on size), or compaction (keeps the latest version of record using the key). For example, we can set a retention policy of three days, or two weeks, or a month, etc. The records in the topic are available for consumption until discarded by time, size, or compaction.
+
+## Client quota
+It is possible for Kafka producers and consumers to produce/consume very high volumes of data or generate requests at a very high rate and thus monopolize broker resources, cause network saturation, and, in general, deny service to other clients and the brokers themselves. Having quotas protects against these issues. Quotas become even more important in large multi-tenant clusters where a small set of badly behaved clients can degrade the user experience for the well-behaved ones.
+
+In Kafka, quotas are byte-rate thresholds defined per client-ID. A client-ID logically identifies an application making a request. A single client-ID can span multiple producer and consumer instances. The quota is applied for all instances as a single entity. For example, if a client-ID has a producer quota of 10 MB/s, that quota is shared across all instances with that same ID.
+
+The broker does not return an error when a client exceeds its quota but instead attempts to slow the client down. When the broker calculates that a client has exceeded its quota, it slows the client down by holding the client’s response for enough time to keep the client under the quota. This approach keeps the quota violation transparent to clients. This also prevents clients from having to implement special back-off and retry behavior.
+
+## Kafka performance
+Here are a few reasons behind Kafka’s performance and popularity:
+
+* Scalability: Two important features of Kafka contribute to its scalability.
+*  A Kafka cluster can easily expand or shrink (brokers can be added or removed) while in operation and without an outage.
+*  A Kafka topic can be expanded to contain more partitions. Because a partition cannot expand across multiple brokers, its capacity is bounded by broker disk space. Being able to increase the number of partitions and the number of brokers means there is no limit to how much data a single topic can store.
+*  Fault-tolerance and reliability: Kafka is designed in such a way that a broker failure is detectable by ZooKeeper and other brokers in the cluster. Because each topic can be replicated on multiple brokers, the cluster can recover from broker failures and continue to work without any disruption of service.
+*  Throughput: By using consumer groups, consumers can be parallelized, so that multiple consumers can read from multiple partitions on a topic, allowing a very high message processing throughput.
+*  Low Latency: 99.99% of the time, data is read from disk cache and RAM; very rarely, it hits the disk.
+
+# Summary
+* Kafka provides low-latency, high-throughput, fault-tolerant publish and subscribe pipelines and can process huge continuous streams of events.
+* Kafka can function both as a message queue and a publisher-subscriber system.
+* At a high level, Kafka works as a distributed commit log.
+* Kafka server is also called a broker. A Kafka cluster can have one or more brokers.
+* A Kafka topic is a logical aggregation of messages.
+* Kafka solves the scaling problem of a messaging system by splitting a topic into multiple partitions.
+* Every topic partition is replicated for fault tolerance and redundancy.
+* A partition has one leader replica and zero or more follower replicas.
+* Partition leader is responsible for all reads and writes. Each follower’s responsibility is to replicate the leader’s data to serve as a ‘backup’ partition.
+* Message ordering is preserved only on a per-partition basis (not across partitions of a topic).
+* Every partition replica needs to fit on a broker, and a partition cannot be divided over multiple brokers.
+* Every broker can have one or more leaders, covering different partitions and topics.
+* Kafka supports a single queue model with multiple readers by enabling consumer groups.
+* Kafka supports a publish-subscribe model by allowing consumers to subscribe to topics for which they want to receive messages.
+* ZooKeeper functions as a centralized configuration management service.
+
+
+## Links
+
+
+
+
+
 
 
