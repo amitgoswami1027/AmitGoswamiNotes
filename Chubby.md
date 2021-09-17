@@ -22,13 +22,20 @@ Please note that:
 Both pessimistic and optimistic locking mechanisms have use cases that they fit in, however, for systems with high loads of updates which hold locks for a significant time interval, the optimistic shows better efficiency. Also, it must be noted that the higher RPS doesn’t necessarily means a faster algorithm, since an important amount of requests are failed because of the lock-wait errors in the pessimistic mechanism.
 
 # DISTRIBUTED LOCKING MECHANISM (CHUBBY) 
-Design a highly available and consistent service that can store small objects and provide a locking mechanism on those objects. Chubby is a service that provides a distributed locking mechanism and also stores small files.
-
-Primarily Chubby was developed to provide a reliable locking service. Over time, some interesting uses of Chubby have evolved. Following are the top use cases where Chubby is practically being used:
+Goal - Design a highly available and consistent service that can store small objects and provide a locking mechanism on those objects. Chubby is a service that provides a distributed locking mechanism and also stores small files.Primarily Chubby was developed to provide a reliable locking service. Over time, some interesting uses of Chubby have evolved. Following are the top use cases where Chubby is practically being used:
 * Leader/master election
 * Naming service (like DNS)
 * Storage (small objects that rarely change)
 * Distributed locking mechanism
 
+Chubby is used extensively inside Google in various systems such as GFS, BigTable. The primary goal is to provide a reliable lock service. Chubby is NOT optimized for high performance, frequent locking scenarios. There are thousands of clients that use Chubby, but they use Chubby occasionally — for coarse-grained locking. Generally such coarse grained locks are held for hours or days and NOT seconds. One typical use of Chubby is for multiple applications is to elect a master — the first one getting the lock wins and becomes the master.
 
+## DESIGN DECISION
+Following main design decisions come out from the topics mentioned in the last section.
+* Coarse grained locking — Applications don’t need locks of shorter duration. For example, electing a master is not a frequent event.
+* Small data storing(small file manipulations)capabilities in addition to a lock service
+* Allow thousands of clients to observe changes. So lock service needs to scale to handle many clients, although the transaction rate may not be that hi
+* Notification mechanism by which client knows when the change occurs in the file that is shared e.g. when a primary changes
+* Support client side caching to deal with clients that may want to poll aggressivel
+* Strong caching guarantees to simplify developer usage
 
