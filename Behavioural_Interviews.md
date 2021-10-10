@@ -209,6 +209,8 @@ https://hbr.org/2019/11/toward-a-racially-just-workplace?ab=seriesnav-bigidea
 * https://www.educative.io/courses/grokking-the-behavioral-interview/YQXMlDkqpoA
 * https://www.codinginterview.com/google
 * https://www.codinginterview.com/amazon
+* [Virtual Team Challanges]: https://www.pmi.org/learning/library/successful-leadership-virtual-project-teams-6039
+* [Virtual Team Challanges]: https://www.pmi.org/learning/library/virtual-teams-leadership-practices-framework-6603
 
 
 
