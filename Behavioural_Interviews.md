@@ -14,9 +14,11 @@ So, what are interviewers really assessing during behavioral interviews? Dependi
 Whether you will be pioneering a new role or backfilling an existing one, the interviewer knows more about the job than you do. They also know more about the existing team and organization. Therefore, they may be listening for certain capabilities and behaviors that will be more likely to make a new hire successful.
 
 # PASSMYINTERVIEW
+## https://onlinelearningcentre.learnupon.com/users/sign_in
 * Ultimate Online Interview Course
 * Ultimate Online Manager Interview MasterClass
-## https://onlinelearningcentre.learnupon.com/users/sign_in
+* Management Skills Master Class
+
 
 
 
