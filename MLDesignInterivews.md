@@ -41,7 +41,8 @@ To get an idea, have a peek at how the architecture of a search engine’s ML sy
 <img width="1085" alt="image" src="https://user-images.githubusercontent.com/13011167/147433638-b12e8d37-1dca-421a-9399-0ebdc8405465.png">
 
 # ML Techniques and Concepts
-
+* Performance based SLA ensures that we return the results back within a given time frame (e.g. 500ms) for 99% of queries. 
+* Capacity refers to the load that our system can handle, e.g., the system can support 1000 QPS (queries per second).
 
 
 
