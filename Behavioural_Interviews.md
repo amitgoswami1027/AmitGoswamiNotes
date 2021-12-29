@@ -19,7 +19,17 @@ Whether you will be pioneering a new role or backfilling an existing one, the in
 * Ultimate Online Manager Interview MasterClass
 * Management Skills Master Class
 
-
+## What Make You Great Manager
+* 1.Confidence
+* 2.Learning & Development
+* 3.Standards
+* 4.Manage Your relationship with the Staff
+* 5.Be on the Side of the Senior Management
+* 6.Find out what motivate individual Team members
+* 7.Support your support and dont micromanage them
+* 8.Be approachable but set boundaries
+* 9.Communicate Clearly & Concisely
+* 10.Empathy 
 
 
 # EDUCATIVE IO MATERIAL
