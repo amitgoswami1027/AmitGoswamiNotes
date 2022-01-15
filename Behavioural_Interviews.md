@@ -1,5 +1,14 @@
 # BEHAVIOURAL INTERVIEWS
 
+ELEVATOR PITCH
+I am a software development Leader with 21 years of industry experience helping companies deliver innovative, scalable and reliable product solutions to the customers.
+
+I have successfully led team of high performing Software development Managers, Architect and Product Managers, managing and delivering product solutions spanning across multiple technology stacks that generate overall revenue of around 2 Billon US Dollars.  I made this happen by continuous coaching development Managers and researcher, optimizing the software engineering process and creating the innovative product development environment.
+
+I am passionate, enthusiastic and dedicated professional, excited about new challenges and always but energy in providing & improving the state of art customer experiences. 
+
+
+
 ## THE PURPOSE OF BEHAVIOURAL INTERVIEWS
 Past behavior is a predictor of future behavior. When preparing for interviews, it is very common for people to gloss over the behavioral portion and just focus on fine-tuning their applicable knowledge. However, interviewers also want to know if you are someone they would want to work with. They may be wondering: 
 
