@@ -7,6 +7,59 @@ I have successfully led team of high performing Software development Managers, A
 
 I am passionate, enthusiastic and dedicated professional, excited about new challenges and always but energy in providing & improving the state of art customer experiences. 
 
+## TRUST
+<img width="721" alt="image" src="https://user-images.githubusercontent.com/13011167/151910935-68f5cba7-fdd7-48cc-bafe-cdddf71a9771.png">
+
+* As a Manager I always stemmed from a desire to help others achieve their goals and make a broader impact on my organization. I’ve always challenged myself to be a better leader, manager, and human being, and this conviction has helped me oversee and lead both small and large teams.
+
+## Communicate with Clarity
+<img width="945" alt="image" src="https://user-images.githubusercontent.com/13011167/151912012-4879a5f8-abcc-43d4-a7f5-4abb1967b97f.png">
+<img width="935" alt="image" src="https://user-images.githubusercontent.com/13011167/151912056-a8d9ecd9-00f0-4d33-b24f-7fb5dde95628.png">
+My early morning routine starts with giving gratitude to God for a beautiful family and an opportunity to lead and manage my team, along with a brief walk outside that gets me closer to nature. This is followed by a delectable cup of coffee, at which my soul becomes filled with enthusiasm. When I am set to work, with my head bent over the paperwork for the day, I make sure that I have a clear picture of the work needed, that I understand it, and that I have everything required to get it done. It is a mental exercise that I do every morning before diving into my main job.
+
+## Priortizing
+* One method that has helped me over the years is prioritizing. That means understanding and attending to tasks according to their levels of importance.
+* Another useful technique is removing myself from the problem; that way, I can think and apply objective solutions to the problem.
+
+## Showing Managerial Courage
+<img width="921" alt="image" src="https://user-images.githubusercontent.com/13011167/151913336-d098b551-c310-4b77-914c-b994106b9361.png">
+* Good managers don’t have just one go-to management style, nor do they have a notion of “the ideal employee.” Good managers aim to create an inclusive and optimal environment for each individual based on their specific strengths, weaknesses, and preferred style of learning and work. In this way, collaboration works best.
+
+## Empathy and sympathy
+Sympathy simply refers to the ability to take part in someone else’s feelings, mostly by feeling sorrowful about their misfortune. On the other hand, empathy is the ability to understand other people’s emotions as if they were our own. The corporate world barely teaches compassion; however, emotional intelligence must be learned and understood. An empathetic manager makes for the best team leader.
+
+Good managers must provide purpose to a group of people and transform them into a team of dedicated individuals.
+Good managers must be fully invested in their team’s career growth and development strategies, actionable plans, and opportunities.
+The best managers strive for diversity and inclusivity in their teams to ensure that they consider all opinions. It dramatically benefits their organization in making product decisions.
+
+## CULTURE
+<img width="440" alt="image" src="https://user-images.githubusercontent.com/13011167/151916114-1373106b-7a7b-4015-9ae1-3da7d930707c.png">
+* Culture eats strategy for breakfast. If a team does not have a good culture, nothing will work. I always make sure that my team has an identity, a purpose, and a vision.
+* Values and habits together define a team’s culture and make the idea of purpose something that isn’t just discussed in team meetings but is lived by your team every day.
+* Organizational culture is the value system that governs and characterizes a team’s behavior or an organization from the top to the very bottom of the corporate chain.Culture is the soul of a team; it guides a team’s operations. In any challenging situation, the team can fall back on their values and culture. A team should live and breathe their culture.
+
+## DIB: Diversity, inclusion, and belonging
+<img width="945" alt="image" src="https://user-images.githubusercontent.com/13011167/151917310-ff44ba48-1950-4b3f-a2f1-d76aeecb456b.png">
+* Diversity constitutes the differences that exist among individuals in an organization.
+* Inclusion deals with how those differences influence an employee’s experience within the organization.
+* Belonging is a feeling of being rightly placed within the organization.
+* Diversity, Inclusion, and Belonging (DIB) is the foundation of the ideal “employee experience,” affecting the employee’s overall performance.
+
+### DIVERSITY & INCLUSION
+<img width="543" alt="image" src="https://user-images.githubusercontent.com/13011167/151917532-e3dc3709-0a68-42fd-90ba-f50990c6df95.png">
+* Every organization must strive to have diverse employees. I have observed that companies with a more diverse workforce are high performers.
+* Therefore, diversity is crucial. It gives an organization a competitive advantage over others in employing talents from different backgrounds, perspectives, ages, and genders, which creates a whirlpool of ideas for the company.
+* (INCLUSION) To make an employee feel included, take some time to study and understand what makes them unique and then know how to strategically place such individuals to enable them to thrive in the work environment and express themselves professionally.
+* (INCLUSION) An exciting way to boost inclusion is to set up events or an avenue where each employee represents and showcases their cultural heritage and celebrates with the team.
+* (BELONGING) On the topic of diversity and inclusion, we often fail to recognize that just because someone is part of our organization doesn’t mean that they feel a sense of belonging. Everyone can think of a moment when they felt like they didn’t belong. It’s not a feeling we forget in a hurry, because it hurts.
+* Belonging is a feeling and therefore is a far more powerful force than any diversity and inclusion strategy could ever be.
+* It is a fundamental human need, a word that translates across any language or culture, and a feeling that every human is wired to want.It is why most individuals belong to some social, religious, or community group, and this trait extends to their corporate environment.
+* Individuals who feel like they are an essential part of an organization will put their energy into making it better.
+* Although diversity and inclusion are separate concepts, they are closely linked: inclusion measures the extent to which efforts to induce variety may succeed. Without inclusion, a diverse the workforce can quickly become toxic, because there will be more focus on differences than uniqueness, which could cause conflict, distrust, and intolerance.
+
+## 
+
+
 
 
 ## THE PURPOSE OF BEHAVIOURAL INTERVIEWS
