@@ -57,9 +57,26 @@ The best managers strive for diversity and inclusivity in their teams to ensure 
 * Individuals who feel like they are an essential part of an organization will put their energy into making it better.
 * Although diversity and inclusion are separate concepts, they are closely linked: inclusion measures the extent to which efforts to induce variety may succeed. Without inclusion, a diverse the workforce can quickly become toxic, because there will be more focus on differences than uniqueness, which could cause conflict, distrust, and intolerance.
 
-## 
+## Psychologically safe culture
+<img width="959" alt="image" src="https://user-images.githubusercontent.com/13011167/151918464-5c0c1dcd-f087-4eae-a787-4b6b5f193346.png">
+* It is the freedom to apply yourself by offering your ideas and skills without harboring a fear of receiving backlash that could reflect poorly on your self-image.
+* A psychologically safe culture leaves room for an employee to take calculated risks without being attacked in a way that will damage self-esteem, diminish their confidence in their abilities, or make the individual feel like their input is not welcome.
+* Psychological safety is a state of mind that believes one will not be punished for speaking up about concerns or mistakes. It is a topic that should never be overlooked in the workplace because it dramatically affects employees’ mental and emotional health.
 
+## Learning and efficient performance
+* Organizations must indeed focus on performance. However, the challenge is ensuring a balance between learning and efficient performance from employees.
+<img width="577" alt="image" src="https://user-images.githubusercontent.com/13011167/151919154-1a11b1f8-8026-4983-b834-e84f1b823e7c.png">
+The above figure is described as follows:
+* When psychological safety and accountability levels are low (apathy zone), the team is apathetic and constantly maneuvers for favorable positions. This is mainly typified in bureaucratic organizations, where seeking favor rather than sharing ideas is a norm.
+* When there’s no psychological safety, but accountability levels are high (anxiety zone), employees get anxious and stressed. They become cautious about offering new ideas, airing their opinions, and taking risks because they fear the consequences. Burnout typifies these types of organizations.
+* In organizations that encourage high psychological safety levels but low-performance levels (comfort zone), complacency is inevitable. Employees have the notion that doing the bare minimum is the norm.
+* When psychological safety and performance pressures go hand in hand (learning zone), there is an ideal environment for employees to grow and give their best efforts to the organization.
 
+## MINDSETS
+<img width="660" alt="image" src="https://user-images.githubusercontent.com/13011167/151919408-fe763712-d62e-42b7-b38e-65ccab59832d.png">
+* A mindset is a belief that informs the way we handle situations. It is a mental disposition or a frame of mind. Your mindset is your collection of thoughts and opinions that shape your thought habits. And your thought habits affect how you think, what you feel, and what you do.
+
+<img width="637" alt="image" src="https://user-images.githubusercontent.com/13011167/151919917-aed970d5-e5e5-4325-bf6f-7e6885889a4b.png">
 
 
 ## THE PURPOSE OF BEHAVIOURAL INTERVIEWS
