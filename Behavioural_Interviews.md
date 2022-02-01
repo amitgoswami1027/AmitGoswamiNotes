@@ -63,6 +63,17 @@ The best managers strive for diversity and inclusivity in their teams to ensure 
 * A psychologically safe culture leaves room for an employee to take calculated risks without being attacked in a way that will damage self-esteem, diminish their confidence in their abilities, or make the individual feel like their input is not welcome.
 * Psychological safety is a state of mind that believes one will not be punished for speaking up about concerns or mistakes. It is a topic that should never be overlooked in the workplace because it dramatically affects employees’ mental and emotional health.
 
+## WORK LIFE BALANCE
+Employees see themselves as two different entities.
+* Their work personality is hardworking, with deadlines to meet, meetings to attend, and much more.
+* They are also a people person in their personal lives–taking the kids to school, spending time with their spouse, and meeting friends for drinks.
+
+I used to believe in the notion of work-life balance until I realized how miserable it made me feel and how much I struggled to create a balance that kept tumbling till it left me in a deep pool of frustration, anger, and resentment.
+The first thing to always keep in mind is that we all have one experience. I always say there is no separation between your work life and your personal life.
+We must learn how to attune the different parts of the body together to create a balance. Our body parts work together to assist us in carrying out various functions. If suddenly our hands were to start operating independently without control, I’m pretty sure it would cause quite a shock. It’s why we don’t separate our bodies into parts.
+To start my day with the right mindset, I adopted new rituals.
+I never snooze the alarm; snoozing the alarm meant breaking the promise I made to myself. Also, to clarify my thoughts, I don’t check my phone first thing in the morning. It wasn’t long before I was convinced that the concept of work-life balance is a hoax and that both sides of life are nothing but a poorly made-up idea deeply rooted in stressing you both emotionally and physically.
+
 ## Learning and efficient performance
 * Organizations must indeed focus on performance. However, the challenge is ensuring a balance between learning and efficient performance from employees.
 <img width="577" alt="image" src="https://user-images.githubusercontent.com/13011167/151919154-1a11b1f8-8026-4983-b834-e84f1b823e7c.png">
