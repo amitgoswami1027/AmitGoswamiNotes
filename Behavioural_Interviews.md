@@ -1,11 +1,12 @@
 # BEHAVIOURAL INTERVIEWS
-
 ELEVATOR PITCH
-I am a software development Leader with 21 years of industry experience helping companies deliver innovative, scalable and reliable product solutions to the customers.
 
-I have successfully led team of high performing Software development Managers, Architect and Product Managers, managing and delivering product solutions spanning across multiple technology stacks that generate overall revenue of around 2 Billon US Dollars.  I made this happen by continuous coaching development Managers and researcher, optimizing the software engineering process and creating the innovative product development environment.
+I am decisive, action-oriented & result focused software development Leader with 21 years of industry experience helping companies deliver innovative, scalable and reliable product solutions to the customers. Derived by new challenges & desire to be successful in all endeavors. Immensely enjoy navigating all aspects of the complex project. 
 
-I am passionate, enthusiastic and dedicated professional, excited about new challenges and always but energy in providing & improving the state of art customer experiences. 
+I have successfully led team of high performing Software development Managers, Architect and Product Managers, managing and delivering product solutions spanning across multiple technology stacks that generate overall revenue of around 800 Million US Dollars. I made this happen by continuous coaching development Managers and researcher, optimizing the software engineering process and creating the innovative product development environment.
+
+A successful two decades track record of being able to carry out & master new areas of responsibilities and demonstrated history of producing excellent and quality deliverables in a timely fashion. I am passionate, enthusiastic and dedicated professional, excited about new challenges and always put energy in providing & improving the state of art customer experiences.
+
 
 ## TRUST
 <img width="721" alt="image" src="https://user-images.githubusercontent.com/13011167/151910935-68f5cba7-fdd7-48cc-bafe-cdddf71a9771.png">
