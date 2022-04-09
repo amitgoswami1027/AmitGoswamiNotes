@@ -1,11 +1,83 @@
 # BEHAVIOURAL INTERVIEWS
-ELEVATOR PITCH
+## ELEVATOR PITCH
 
 I am decisive, action-oriented & result focused software development Leader with 21 years of industry experience helping companies deliver innovative, scalable and reliable product solutions to the customers. Derived by new challenges & desire to be successful in all endeavors. Immensely enjoy navigating all aspects of the complex project. 
 
 I have successfully led team of high performing Software development Managers, Architect and Product Managers, managing and delivering product solutions spanning across multiple technology stacks that generate overall revenue of around 800 Million US Dollars. I made this happen by continuous coaching development Managers and researcher, optimizing the software engineering process and creating the innovative product development environment.
 
 A successful two decades track record of being able to carry out & master new areas of responsibilities and demonstrated history of producing excellent and quality deliverables in a timely fashion. I am passionate, enthusiastic and dedicated professional, excited about new challenges and always put energy in providing & improving the state of art customer experiences.
+
+Thanks very much to give  the opportunity to interview for this role. 
+I am self motivated persion, I am self strated. I am very good in collabrating with the customer and also very good in working under pressure. 
+
+
+
+
+
+
+
+## LEADER
+The role of a leader is to give direction to a team of people. Ledears give their team clear instructions and they motivate their team to achieve the company's vision. Leaders provide guidance , they give momentum and motivation, they praise people for outstanding work and they define clear targets and goals for their team to achieve.
+
+* A good leader will always have the clear vision.
+* A good leader will always set the action points for their team to complete.
+* A good leader will deligate the task to the team member basis their strengths.
+* A good leader will always lead by example and set high expectations from the start. (Its easier to lower standards lateron but its really hardf to raise 
+  if we start out too low)
+* A good leader always develop their team. (Training & Development)
+* A good leader will always recognize good work and praise the team member. 
+* A good leader understnad the need to Diversity and Inclusion.
+
+A good leader is someone has the clear vision of waht they want to achieve. They share that vision with their team and they encourage everyone to believe in it. A GL inspires, motivates and steers their team to reachpredefined objectives and they will provide the right training and coachingto enable everyone in the team to be the best ehy can be. A GL empower their team members to take responsibility for tasks that allow the business to achieve its vision and they understand the importanc of Diversity and Inclusion. Finally a good leader will lead by example, they will praise the staff for the optstadning work and they will never waiver during difficult times.
+
+
+
+## Describe yourself in One Word
+* INDUSTRIOUS - I am diligent and hard-working. My reputation in previous roles was someone who could be relied upon to get all tasks finished on time and   to the expected standard. I do not like it when deadlines get missed and I particularly don’t like it if things are not done to the highest standards 
+  achievable. I can remember working on a project with other people in my last job. The project was in danger of running over the agreed deadline due to a 
+  supplier that had let us down. Some people in the team wanted to request more time from the client to get the project finished, but I didn’t think that 
+  was acceptable. I agreed to work additional hours each day to get the project finished because that is my nature, and that is what I am like as a person.
+  Because of my industrious approach to work, I can immediately add value to your business because everything I do will be the best it can be, and I will 
+  never let you down.”
+* RESULT ORIENTED - As a manager, I have a responsibility to consistently achieve, and on that basis, I will come into your organization, get a clear brief 
+  on my objectives, and then deliver the right results. Experience in previous roles has taught me the only way to achieve what is expected is to have a 
+  vision, to communicate that vision to others in the team, and then to support, direct and motivate them. Hiring me as your manager means you will be 
+  getting someone who guarantees everything will be completed on time, and nothing will ever be missed.”
+* INQUISITIVE - “I’d describe myself as INQUISITIVE. I like to get to the bottom of problems so I can prevent them from happening again, and I like to get 
+  a thorough understanding of how things work because that increasesmy depth of knowledge.I am a big advocate of self-improvement, and I am passionate 
+  about taking responsibility for my own continuous professional development.This means you will be hiring someone in this technical role who already has a 
+  broad range of knowledge, and who will continually grow and develop as your company grows.”
+
+
+## BIGGEST STRENGHTS
+* INDUSTRIOUS - I am diligent and hard-working. My reputation in previous roles was someone who could be relied upon to get all tasks finished on time and   to the expected standard. I do not like it when deadlines get missed and I particularly don’t like it if things are not done to the highest standards 
+  achievable. I can remember working on a project with other people in my last job. The project was in danger of running over the agreed deadline due to a 
+  supplier that had let us down. Some people in the team wanted to request more time from the client to get the project finished, but I didn’t think that 
+  was acceptable. I agreed to work additional hours each day to get the project finished because that is my nature, and that is what I am like as a person.
+  Because of my industrious approach to work, I can immediately add value to your business because everything I do will be the best it can be, and I will 
+  never let you down.”
+* FLEXIABLE and ADAPTABLE
+* COMMERCIALLY AWARE
+* GOOD  COLLABORATOR 
+* DISCIPLINED
+
+
+## BIGGEST WEAKNESS
+* My biggest weekness is that I tend to focused too much on the details. In previous role my Manager praised me for my Collaboration and decilipine skills but want me to focussed less on details and more on output. So I took upon the comment and since I have being trying to improve in that area. So I am being more mindfull. However naturally I am detailed oriented person. Whilst it is good to have high standards, I need to concentrate more on getting the project or task I am responsible for finished as soon as possible fo I can move on to the next one.
+
+* I am not very good to saying "NO" to the people and I trend to say "YES" to everything before accessing my capacity to carry out the work require. This is beacuse I am naturally people pleasure and I never let people down. However I do need to learn to access my workload before saying  "YES" to additional duties and responsibilities. So, I am type of person who will always take the feedback and access my performance.
+
+* I am quite hesitant when it comes to taking risk. This applies to both my personal life and in the workplace. I tend to on the side of caution instead of taking risk and always choose the safest option. Howeverr , I do understand that taking calcuated risk both in the workplace and in your personal life means you can grow and move forward and I am learning to be more of a risk taker when the time is right.
+
+* I am finding hard asking people for help. I am a proud person who prefers to figure things out for myself insteadof asking peoples for assistance. However, I am aware this is not particulatly helpful in the workplace and I am trying to be more mindful in situations like this and ask co-workersfor help when it is needed.
+
+* My biggest weakness is that I am not very good in giving the peoples constructuve feedback. However I do appreciate and understnad that you have to be honest in the work life because that help your co-workers to improve and develop. I am trying to be more confident and mindeful in the situations like this.
+
+
+
+
+
+
 
 
 ## TRUST
