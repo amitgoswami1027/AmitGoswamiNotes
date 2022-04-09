@@ -15,6 +15,11 @@ I would describe myself as high achieving, strategically focused and commerciall
 
 I am Energetic and have the ability to motivate employees. I always set the high expectations and would always support company directors and organizational vision and objectives. If you hire me in this position, I am confident that you would see the positve return on investment and I would always embrace change and implement it quikly to make sure that you maintain your position as  market leader. 
 
+## ELEVATOR PITCH -03 (Work Experience and Background)
+
+
+## Challanging Position (Unix Version of the Product)
+
 ## Why do you want to be SM?
 I want to be SM primilarly beacuse of the kind of the responsibility that come with it. I am type of person who thrive on leading difficulat teams and I can do that due to my unique management approach. I want to be accountabile at the highlest level possible within the organixzation. I enjoy of having multiple challange and objective what we need to achieve. As a SM you really need to influence the key stakeholders within the organizations. I believe I will get huge amount of job satisfaction as the SM. Also finally outside of work, I have personal goal that I need to achieve and those goals I need to achieve if I have position of SM.
 
