@@ -1,5 +1,5 @@
 # BEHAVIOURAL INTERVIEWS
-## ELEVATOR PITCH
+## ELEVATOR PITCH -01 
 
 I am decisive, action-oriented & result focused software development Leader with 21 years of industry experience helping companies deliver innovative, scalable and reliable product solutions to the customers. Derived by new challenges & desire to be successful in all endeavors. Immensely enjoy navigating all aspects of the complex project. 
 
@@ -7,40 +7,22 @@ I have successfully led team of high performing Software development Managers, A
 
 A successful two decades track record of being able to carry out & master new areas of responsibilities and demonstrated history of producing excellent and quality deliverables in a timely fashion. I am passionate, enthusiastic and dedicated professional, excited about new challenges and always put energy in providing & improving the state of art customer experiences.
 
- 
-I am self motivated persion, I am self strated. I am very good in collabrating with the customer and also very good in working under pressure. 
+## ELEVATOR PITCH -02
 
 My name is Amit and Thanks very much to give the opportunity to interview for this role. 
-I would describe myself as high achieving, strategically focused and commercially drive SM who has the track record of achieving within this industry. Over the years I have led and transformed difficult teams. In my last role I managed to turnaround the difficult team which has the histroically behaviour issues. I achieve that goal by imparting the right training to the team members by undertaking the regular performance reviews. I also empowered the senior team member to achive the full potential. I used the stype of leadership that every will respond to. My key selling point include the fact that I am most Energetic , I have the ability to motivate the most difficulat of employees, I always set the high expectations and I would alwasy support company director. If you hire me in the SM position, I am confident that you would see the positve return on investment and I would always embrace change and implement it quikly to make sure that you maintain your position as  market leader. 
 
-Why do you want to be SM?
-I want to be SM primilarly beacuse of the kind of the responsibility that come with it. I am type of person who thrive on leading difficulat teams and I can do that due to my management approach. I want to be accountabile at the highlest level possible within the organixzation. I enjoy the challange of having multiple challange and objective what we need to achieve. As a SM you really need to influence the key stakeholders within the organizations. I believe I will get huge amount of job satisfaction as the SM. Also finally outside of work , I have personal goal that I need to achieve and those goals I need to achieve if I have position of SM.
+I would describe myself as high achieving, strategically focused and commercially driven Professional who has the track record of achieving within this industry. Over the years I have led and transformed difficult teams. In my last role I managed to turnaround the difficult team which has the histroically behaviour issues. I achieve that goal by imparting the right training to the team members by undertaking the regular performance reviews. I also empowered the senior team member to achive the full potential. I used the style of leadership that every will respond to. 
 
-What the first thing you do as working the role of SM?
+I am Energetic and have the ability to motivate employees. I always set the high expectations and would always support company directors and organizational vision and objectives. If you hire me in this position, I am confident that you would see the positve return on investment and I would always embrace change and implement it quikly to make sure that you maintain your position as  market leader. 
+
+## Why do you want to be SM?
+I want to be SM primilarly beacuse of the kind of the responsibility that come with it. I am type of person who thrive on leading difficulat teams and I can do that due to my unique management approach. I want to be accountabile at the highlest level possible within the organixzation. I enjoy of having multiple challange and objective what we need to achieve. As a SM you really need to influence the key stakeholders within the organizations. I believe I will get huge amount of job satisfaction as the SM. Also finally outside of work, I have personal goal that I need to achieve and those goals I need to achieve if I have position of SM.
+
+## What the first thing you do as working the role of SM?
 If I get to become your SM, I would do three thing when I start working in the role.
 * I would obtain the thorow brief from you the company director to establish the most pressing issue that require my attention. I would also determine the what the strategic vision of the company and establish what I can do to achive your commercial objectives.
 * I will then meet my team/department and will observe their action. I think its imprtant as the SM of the team to sit down and observe the  the team in action. That enable you to understand their work ethics, standards, understnad their strenght and weakness and also determine any areas for their oppotunities and growth.
 * I would setup my expectation about what we want to achieve and how will we going to achieve and how are we going to achieve it. I will also delegate task and assign the responsibility and also motivating in order to achieve the objective of the organization.
-
-
-
-
-
-## LEADER
-The role of a leader is to give direction to a team of people. Ledears give their team clear instructions and they motivate their team to achieve the company's vision. Leaders provide guidance , they give momentum and motivation, they praise people for outstanding work and they define clear targets and goals for their team to achieve.
-
-* A good leader will always have the clear vision.
-* A good leader will always set the action points for their team to complete.
-* A good leader will deligate the task to the team member basis their strengths.
-* A good leader will always lead by example and set high expectations from the start. (Its easier to lower standards lateron but its really hardf to raise 
-  if we start out too low)
-* A good leader always develop their team. (Training & Development)
-* A good leader will always recognize good work and praise the team member. 
-* A good leader understnad the need to Diversity and Inclusion.
-
-A good leader is someone has the clear vision of waht they want to achieve. They share that vision with their team and they encourage everyone to believe in it. A GL inspires, motivates and steers their team to reachpredefined objectives and they will provide the right training and coachingto enable everyone in the team to be the best ehy can be. A GL empower their team members to take responsibility for tasks that allow the business to achieve its vision and they understand the importanc of Diversity and Inclusion. Finally a good leader will lead by example, they will praise the staff for the optstadning work and they will never waiver during difficult times.
-
-
 
 ## Describe yourself in One Word
 * INDUSTRIOUS - I am diligent and hard-working. My reputation in previous roles was someone who could be relied upon to get all tasks finished on time and   to the expected standard. I do not like it when deadlines get missed and I particularly don’t like it if things are not done to the highest standards 
@@ -83,6 +65,20 @@ A good leader is someone has the clear vision of waht they want to achieve. They
 
 * My biggest weakness is that I am not very good in giving the peoples constructuve feedback. However I do appreciate and understnad that you have to be honest in the work life because that help your co-workers to improve and develop. I am trying to be more confident and mindeful in the situations like this.
 
+
+## LEADER
+The role of a leader is to give direction to a team of people. Ledears give their team clear instructions and they motivate their team to achieve the company's vision. Leaders provide guidance , they give momentum and motivation, they praise people for outstanding work and they define clear targets and goals for their team to achieve.
+
+* A good leader will always have the clear vision.
+* A good leader will always set the action points for their team to complete.
+* A good leader will deligate the task to the team member basis their strengths.
+* A good leader will always lead by example and set high expectations from the start. (Its easier to lower standards lateron but its really hardf to raise 
+  if we start out too low)
+* A good leader always develop their team. (Training & Development)
+* A good leader will always recognize good work and praise the team member. 
+* A good leader understnad the need to Diversity and Inclusion.
+
+A good leader is someone has the clear vision of waht they want to achieve. They share that vision with their team and they encourage everyone to believe in it. A GL inspires, motivates and steers their team to reachpredefined objectives and they will provide the right training and coachingto enable everyone in the team to be the best ehy can be. A GL empower their team members to take responsibility for tasks that allow the business to achieve its vision and they understand the importanc of Diversity and Inclusion. Finally a good leader will lead by example, they will praise the staff for the optstadning work and they will never waiver during difficult times.
 
 
 
