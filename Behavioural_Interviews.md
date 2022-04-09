@@ -1,7 +1,7 @@
 # BEHAVIOURAL INTERVIEWS
 ## ELEVATOR PITCH -01 
 
-I am decisive, action-oriented & result focused software development Leader with 21 years of industry experience helping companies deliver innovative, scalable and reliable product solutions to the customers. Derived by new challenges & desire to be successful in all endeavors. Immensely enjoy navigating all aspects of the complex project. 
+I am decisive, action-oriented & result focused software development Leader with 21 years of industry experience helping companies deliver innovative, scalable and reliable product solutions to the customers. I am driven by new challenges, desire to be successful in all endeavors and enjoy navigating all aspects of the complex project. 
 
 I have successfully led team of high performing Software development Managers, Architect and Product Managers, managing and delivering product solutions spanning across multiple technology stacks that generate overall revenue of around 800 Million US Dollars. I made this happen by continuous coaching development Managers and researcher, optimizing the software engineering process and creating the innovative product development environment.
 
@@ -11,7 +11,7 @@ A successful two decades track record of being able to carry out & master new ar
 
 My name is Amit and Thanks very much to give the opportunity to interview for this role. 
 
-I would describe myself as high achieving, strategically focused and commercially driven Professional who has the track record of achieving within this industry. Over the years I have led and transformed difficult teams. In my last role I managed to turnaround the difficult team which has the histroically behaviour issues. I achieve that goal by imparting the right training to the team members by undertaking the regular performance reviews. I also empowered the senior team member to achive the full potential. I used the style of leadership that every will respond to. 
+I would describe myself as "high achieving", "strategically focused" and "commercially driven" Professional who has the track record of achieving within this industry. Over the years I have led and transformed difficult teams. In my last role I managed to turnaround the difficult team which has the histroically behaviour issues. I achieve that goal by imparting the right training to the team members by undertaking the regular performance reviews. I also empowered the senior team member to achive the full potential. I used the style of leadership that every will respond to. 
 
 I am Energetic and have the ability to motivate employees. I always set the high expectations and would always support company directors and organizational vision and objectives. If you hire me in this position, I am confident that you would see the positve return on investment and I would always embrace change and implement it quikly to make sure that you maintain your position as  market leader. 
 
