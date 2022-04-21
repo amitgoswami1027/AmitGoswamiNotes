@@ -118,12 +118,14 @@ The best managers strive for diversity and inclusivity in their teams to ensure 
 
 ## CULTURE
 <img width="440" alt="image" src="https://user-images.githubusercontent.com/13011167/151916114-1373106b-7a7b-4015-9ae1-3da7d930707c.png">
+
 * Culture eats strategy for breakfast. If a team does not have a good culture, nothing will work. I always make sure that my team has an identity, a purpose, and a vision.
 * Values and habits together define a team’s culture and make the idea of purpose something that isn’t just discussed in team meetings but is lived by your team every day.
 * Organizational culture is the value system that governs and characterizes a team’s behavior or an organization from the top to the very bottom of the corporate chain.Culture is the soul of a team; it guides a team’s operations. In any challenging situation, the team can fall back on their values and culture. A team should live and breathe their culture.
 
 ## DIB: Diversity, inclusion, and belonging
 <img width="945" alt="image" src="https://user-images.githubusercontent.com/13011167/151917310-ff44ba48-1950-4b3f-a2f1-d76aeecb456b.png">
+
 * Diversity constitutes the differences that exist among individuals in an organization.
 * Inclusion deals with how those differences influence an employee’s experience within the organization.
 * Belonging is a feeling of being rightly placed within the organization.
@@ -131,6 +133,7 @@ The best managers strive for diversity and inclusivity in their teams to ensure 
 
 ### DIVERSITY & INCLUSION
 <img width="543" alt="image" src="https://user-images.githubusercontent.com/13011167/151917532-e3dc3709-0a68-42fd-90ba-f50990c6df95.png">
+
 * Every organization must strive to have diverse employees. I have observed that companies with a more diverse workforce are high performers.
 * Therefore, diversity is crucial. It gives an organization a competitive advantage over others in employing talents from different backgrounds, perspectives, ages, and genders, which creates a whirlpool of ideas for the company.
 * (INCLUSION) To make an employee feel included, take some time to study and understand what makes them unique and then know how to strategically place such individuals to enable them to thrive in the work environment and express themselves professionally.
@@ -143,6 +146,7 @@ The best managers strive for diversity and inclusivity in their teams to ensure 
 
 ## Psychologically safe culture
 <img width="959" alt="image" src="https://user-images.githubusercontent.com/13011167/151918464-5c0c1dcd-f087-4eae-a787-4b6b5f193346.png">
+
 * It is the freedom to apply yourself by offering your ideas and skills without harboring a fear of receiving backlash that could reflect poorly on your self-image.
 * A psychologically safe culture leaves room for an employee to take calculated risks without being attacked in a way that will damage self-esteem, diminish their confidence in their abilities, or make the individual feel like their input is not welcome.
 * Psychological safety is a state of mind that believes one will not be punished for speaking up about concerns or mistakes. It is a topic that should never be overlooked in the workplace because it dramatically affects employees’ mental and emotional health.
