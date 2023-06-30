@@ -1,5 +1,5 @@
 
-++ CAPACITY PLANNING
+# CAPACITY PLANNING
 
 Capacity planning plays an integral role in the landscape of real-world system design. This complex exercise, far from being a mere theoretical consideration, is essential for engineers to accurately estimate the capacity needs of their proposed systems.
 
@@ -17,10 +17,10 @@ Now, let’s explore how capacity planning works in real-world system design.
 
 ![image](https://github.com/amitgoswami1027/AmitGoswamiNotes/assets/13011167/595980d2-d296-44d8-89a4-1e7055ee9003)
 
-++ Throughput Calculation
+## Throughput Calculation
 In designing large-scale systems, it is important to estimate the system’s scale in the beginning. Requirements might hint at the throughput, or we may need to infer it from relevant metrics like daily active users
 
-++ Throughput hint scenario
+ ## Throughput hint scenario
 Let's consider Example 1 - Temperature sensors for a monitoring system. The system needs to measure temperature changes across a county using about 10 million sensors. These sensors report changes every 5 seconds. Analysts use the system to forecast the weather using a dashboard that displays reports.
 
 From these requirements, we can infer a few things about the system’s capacity. We can estimate what the throughput is as follows:
@@ -31,7 +31,7 @@ Assuming each request from a sensor to server lasts 200ms, a more realistic aver
 
 So, for this system, a good throughput estimate is about 2 million QPS.
 
-++ Throughput through DAU scenario
+## Throughput through DAU scenario
 Sometimes, throughput isn’t evident in the requirements. Let's look at Example 2 - Social Media News Feed:
 
 The system allows users to post text, images, and videos on their profile timeline, which is organized chronologically. Users can follow others and see relevant posts from those they follow on their timeline.
@@ -77,7 +77,7 @@ Round up to 6k
 ```
 Remember, these are rough estimates. For most system designs, this is good enough. A good tip is to think in round numbers and round up to ensure conservative estimates.
 
-++ Peak QPS
+## Peak QPS
 Calculating peak QPS is important as it often dictates the capacity requirement of the design. Peak QPS refers to the highest rate at which a system will be expected to handle queries, often occurring during times of high usage or even traffic spikes. This can be much higher than the average rate. This is why it requires special attention.
 
 One common method to determine peak QPS is through historical data analysis. This involves tracking the number of queries that the infrastructure handles over a specific timeframe, like days, weeks, or even months, and then choosing the highest value. This method relies on the availability of data and the system’s historical performance.
@@ -106,7 +106,7 @@ Average Peak QPS = 500M / 3600 (60 minutes in seconds) = 138k
 
 Preparing for peak QPS helps ensure that the system remains stable and responsive even under the heaviest loads. This contributes to a better user experience and system reliability.
 
-++ Estimating server requirement
+## Estimating server requirement
 With the estimated throughput and response time, we can estimate the number of servers needed to run the application. 
 
 In Example 1 - Temperature sensors, the system has an average response time of 200ms and needs to handle 2M QPS, and each application server can manage 32 workers handling 160 QPS, we’d need around 12.5k server instances.
@@ -152,10 +152,6 @@ JUN 29
 ∙
 PREVIEW
 		
- 
-
-
-
 SHARE
  
 This newsletter is written by guest author Diego Ballona, who is a senior engineering manager at Spotify.
@@ -177,10 +173,10 @@ So, when designing a large-scale system, it’s important to think about capacit
 Now, let’s explore how capacity planning works in real-world system design.
 
 
-Throughput Calculation
+## Throughput Calculation
 In designing large-scale systems, it is important to estimate the system’s scale in the beginning. Requirements might hint at the throughput, or we may need to infer it from relevant metrics like daily active users.
 
-Throughput hint scenario
+## Throughput hint scenario
 Let's consider Example 1 - Temperature sensors for a monitoring system. The system needs to measure temperature changes across a county using about 10 million sensors. These sensors report changes every 5 seconds. Analysts use the system to forecast the weather using a dashboard that displays reports.
 
 From these requirements, we can infer a few things about the system’s capacity. We can estimate what the throughput is as follows:
@@ -191,7 +187,7 @@ Assuming each request from a sensor to server lasts 200ms, a more realistic aver
 
 So, for this system, a good throughput estimate is about 2 million QPS.
 
-Throughput through DAU scenario
+## Throughput through DAU scenario
 Sometimes, throughput isn’t evident in the requirements. Let's look at Example 2 - Social Media News Feed:
 
 The system allows users to post text, images, and videos on their profile timeline, which is organized chronologically. Users can follow others and see relevant posts from those they follow on their timeline.
@@ -227,7 +223,7 @@ Or, to expand:
 Round up to 6k
 Remember, these are rough estimates. For most system designs, this is good enough. A good tip is to think in round numbers and round up to ensure conservative estimates.
 
-Peak QPS
+## Peak QPS
 Calculating peak QPS is important as it often dictates the capacity requirement of the design. Peak QPS refers to the highest rate at which a system will be expected to handle queries, often occurring during times of high usage or even traffic spikes. This can be much higher than the average rate. This is why it requires special attention.
 
 One common method to determine peak QPS is through historical data analysis. This involves tracking the number of queries that the infrastructure handles over a specific timeframe, like days, weeks, or even months, and then choosing the highest value. This method relies on the availability of data and the system’s historical performance.
@@ -252,7 +248,7 @@ Per hour over a period of 8 hours = 4B page views / 8 hours = 500M / hour
 Average Peak QPS = 500M / 3600 (60 minutes in seconds) = 138k
 Preparing for peak QPS helps ensure that the system remains stable and responsive even under the heaviest loads. This contributes to a better user experience and system reliability.
 
-Estimating server requirement
+## Estimating server requirement
 With the estimated throughput and response time, we can estimate the number of servers needed to run the application. 
 
 In Example 1 - Temperature sensors, the system has an average response time of 200ms and needs to handle 2M QPS, and each application server can manage 32 workers handling 160 QPS, we’d need around 12.5k server instances.
@@ -264,7 +260,7 @@ Each instance can handle then 160 QPS
 2M (average QPS) / 160 = 12.5k instances
 Now that we estimated the scale of the overall system, let's focus on the specifics of the system we are designing, starting with request sizing.
 
-++ Understanding request sizes
+## Understanding request sizes
 Assessing request sizes is crucial for determining bandwidth and storage requirements. In system design, we often need to accommodate a variety of request types that can significantly impact the load on our system. These could be as simple as GET requests retrieving data or as complex as POST requests that involve large multimedia files.
 
 While initial requirements might not include specific request sizes, we can make informed assumptions based on the system’s functionality and the nature of data it handles
@@ -288,7 +284,7 @@ For 10 posts:
 
 ```
 
-++ Considerations for Request Sizing
+## Considerations for Request Sizing
 Understanding request sizes is just part of the equation. We must also consider factors like data format, serialization/deserialization, and the impact of these on bandwidth and processing needs.
 
 Data Format. The format of data being sent can significantly impact the bandwidth required. More verbose data formats, like XML, can consume more bandwidth compared to less verbose formats like JSON. Even among similar formats, options like Binary JSON (BSON) can be more efficient. 
@@ -301,17 +297,17 @@ Network Protocols: The choice of network protocol (HTTP/1.1, HTTP/2, gRPC, etc.)
 
 Request sizing is an important aspect of capacity planning. Although it requires making assumptions, these informed guesses help anticipate the system’s needs. It ensures that we’re well-prepared to handle expected loads and traffic patterns.
 
-++ Bandwidth & data in transit
+## Bandwidth & data in transit
 Understanding each record’s cost is fundamental. We need to consider the bandwidth per operation in both directions - client to server (ingress) and server to client (egress).
 
-++ Client to server (ingress)
+## Client to server (ingress)
 In Example 1 - Temperature sensors, the data sent by the sensors to the application is known as ingress: incoming data to the application's network. Suppose each sensor request is 0.5KB and the average QPS is 400k, our average ingress bandwidth is approximately 200MB/second. We can simplify the discussion by leaving out the read path for dashboards, etc., as it probably won’t significantly impact capacity.
 
 An interesting aspect to consider is how often we need to send data to the servers. It’s possible that not all data requires immediate transmission. For example, a temperature sensor might only need to report data when a significant temperature change occurs. By storing the temperature state locally on the sensor and transmitting it only upon changes, we could potentially reduce the capacity load and costs.
 
 However, it’s important to set a limit for the maximum time a sensor can go without reporting to the server. This ensures that any malfunctioning or offline sensors are promptly identified.
 
-++ Server to client (egress)
+## Server to client (egress)
 When considering a system like Example 2 - Social Networking News Feed, posting content would equate to ingress traffic. Based on our previous estimates, suppose each post is 1KB and we’ve got an average of 6k QPS, our ingress bandwidth is about 6MB/second.
 
 The egress, or the data transmitted from the server to client, can be complex. Suppose our system paginates every 20 posts, and the server renders raw file versions each time. In this scenario, our average egress bandwidth would be very high at ~250GB/second:
